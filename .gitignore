@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+vendor/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+
+# Build outputs
+dist/
+build/
+out/
+
+# Temporary files
+*.tmp
+temp/
+tmp/
+
+# Cache
+.cache/
+*.cache
+
+# Generated specifications (if needed to exclude)
+# specifications/drafts/
+
+# Backup files
+*.bak
+*.backup
+*_backup/

@@ -1,0 +1,47 @@
+# Agent間連携ルール定義
+
+agent_coordination:
+  workflow:
+    - name: "要求分析"
+      primary: requirement-analyst-agent
+      support: 
+        - technical-writer-agent
+      output: requirement_spec.md
+      
+    - name: "システム設計"
+      primary: system-architect-agent
+      support:
+        - requirement-analyst-agent
+        - technical-writer-agent
+      input: requirement_spec.md
+      output: 
+        - architecture_design.md
+        - data_model.md
+        
+    - name: "実装仕様"
+      primary: implementation-spec-agent
+      support:
+        - system-architect-agent
+        - technical-writer-agent
+      input:
+        - requirement_spec.md
+        - architecture_design.md
+      output:
+        - implementation_spec.md
+        - test_spec.md
+        
+    - name: "品質レビュー"
+      primary: qa-reviewer-agent
+      support: all
+      input: all_specifications
+      output: review_report.md
+
+  communication_rules:
+    - すべてのAgentはprogress.mdを更新する
+    - 重要な決定はspec-master-agentに報告
+    - 仕様間の矛盾を発見したら即座に関係Agentに通知
+    
+  escalation_path:
+    - level1: 担当Agent間で解決
+    - level2: spec-master-agentが調整
+    - level3: ユーザーに確認
