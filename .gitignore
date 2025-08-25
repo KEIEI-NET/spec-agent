@@ -8,6 +8,7 @@ vendor/
 *.swp
 *.swo
 *~
+.claude/
 
 # OS files
 .DS_Store
@@ -35,10 +36,31 @@ tmp/
 .cache/
 *.cache
 
-# Generated specifications (if needed to exclude)
-# specifications/drafts/
-
 # Backup files
 *.bak
 *.backup
 *_backup/
+spec-agent_backup_*/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local configuration
+.claude/settings.local.json
+
+# Development files
+*.orig
+install_old.py
+install_fixed.py
