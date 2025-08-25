@@ -63,4 +63,3 @@ htmlcov/
 # Development files
 *.orig
 install_old.py
-install_fixed.py

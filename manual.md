@@ -45,7 +45,7 @@
 
 ```bash
 # 1. Spec Agent のインストール（約1分）
-python install_fixed.py
+python install.py
 
 # 2. プロジェクトディレクトリへ移動
 cd my-project

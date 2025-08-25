@@ -39,7 +39,7 @@ claude --version
 
 ```cmd
 # エラーハンドリング強化版
-python install_fixed.py
+python install.py
 ```
 
 #### 方法2: バッチファイルを使用
@@ -61,7 +61,7 @@ python install.py
 
 ```bash
 # Python 3 を使用
-python3 install_fixed.py
+python3 install.py
 ```
 
 #### 方法2: シェルスクリプトを使用
@@ -217,4 +217,4 @@ templates/todo.md
 *バージョン: v2.0.0*
 
 **更新履歴:**
-- v2.0.0 (2025年01月25日): install_fixed.py の内容を反映、トラブルシューティング充実、OS別詳細手順追加
+- v2.0.0 (2025年01月25日): セキュリティ強化版インストーラーを反映、トラブルシューティング充実、OS別詳細手順追加

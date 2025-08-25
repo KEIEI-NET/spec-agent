@@ -73,7 +73,7 @@ graph TB
 npm install -g @anthropic-ai/claude-code
 
 # Spec Agent のインストール
-python install_fixed.py
+python install.py
 # または
 ./install.sh  # Linux/macOS
 install.bat   # Windows
@@ -121,7 +121,7 @@ spec-agent/
 ├── ⚙️ 設定・ルール
 │   └── coordination_rules.yaml
 ├── 🔧 インストーラー
-│   ├── install_fixed.py     # 改善版インストーラー
+│   ├── install.py           # セキュリティ強化版インストーラー
 │   ├── install.py           # 標準インストーラー
 │   ├── install.sh           # Unix系用
 │   ├── install.bat          # Windows用
