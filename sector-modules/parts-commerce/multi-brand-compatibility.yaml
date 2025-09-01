@@ -1,0 +1,440 @@
+# Multi-Brand Parts Compatibility Specification
+# マルチブランド部品互換性管理仕様
+# Version: v1.0.0
+# Last Updated: 2025-01-25
+
+system_overview:
+  purpose: "国内外全メーカー・全車種対応の包括的部品管理システム"
+  coverage:
+    japanese_manufacturers:
+      - toyota_lexus
+      - nissan_infiniti
+      - honda_acura
+      - mitsubishi
+      - mazda
+      - subaru
+      - daihatsu
+      - suzuki
+      - isuzu
+      - hino
+      - ud_trucks
+      - mitsubishi_fuso
+    european_manufacturers:
+      - mercedes_benz
+      - bmw
+      - audi
+      - volkswagen
+      - porsche
+      - volvo
+      - fiat
+      - peugeot_citroen
+      - renault
+      - mini
+      - land_rover
+      - jaguar
+    commercial_vehicles:
+      - scania
+      - volvo_trucks
+      - man
+      - daf
+      - iveco
+    construction_equipment:
+      - komatsu
+      - caterpillar
+      - hitachi
+      - kobelco
+      - sumitomo
+
+manufacturer_specifications:
+  toyota_group:
+    brands:
+      - name: "Toyota"
+        part_number_format: "xxxxx-xxxxx"
+        example: "90915-10009"
+      - name: "Lexus"
+        part_number_format: "xxxxx-xxxxx"
+        example: "90915-YZZD4"
+      - name: "Daihatsu"
+        part_number_format: "xxxxx-xxxxx"
+        example: "15601-B2030"
+    data_requirements:
+      - frame_number_range
+      - engine_family
+      - production_plant_code
+      - model_year
+    
+  nissan_group:
+    brands:
+      - name: "Nissan"
+        part_number_format: "xxxxx-xxxxx"
+        example: "15208-65F0C"
+      - name: "Infiniti"
+        part_number_format: "xxxxx-xxxxx"
+        example: "21010-7S000"
+    special_requirements:
+      - cvt_transmission_compatibility
+      - e_power_system_parts
+      - propilot_sensor_parts
+  
+  european_luxury:
+    mercedes_benz:
+      part_format: "XXX XXX XX XX"
+      example: "220 500 00 93"
+      special_codes:
+        - vin_specific_parts
+        - amg_exclusive_parts
+        - classic_center_parts
+    
+    bmw:
+      part_format: "XX XX X XXX XXX"
+      example: "11 42 7 953 129"
+      special_requirements:
+        - m_performance_parts
+        - i_series_ev_parts
+        - alpina_specific_parts
+    
+    audi:
+      part_format: "XXX XXX XXX X"
+      example: "06E 115 562 A"
+      special_requirements:
+        - quattro_system_parts
+        - rs_performance_parts
+        - e_tron_ev_parts
+
+commercial_vehicle_specifics:
+  truck_categories:
+    light_duty:
+      gvw_range: "3.5t - 7.5t"
+      manufacturers:
+        - isuzu_elf
+        - hino_dutro
+        - mitsubishi_canter
+        - nissan_atlas
+    
+    medium_duty:
+      gvw_range: "8t - 15t"
+      manufacturers:
+        - isuzu_forward
+        - hino_ranger
+        - ud_condor
+    
+    heavy_duty:
+      gvw_range: "16t - 25t+"
+      manufacturers:
+        - isuzu_giga
+        - hino_profia
+        - ud_quon
+        - mitsubishi_super_great
+    
+    european_trucks:
+      manufacturers:
+        - scania_r_series
+        - volvo_fh_series
+        - mercedes_actros
+        - man_tgx
+  
+  special_requirements:
+    brake_systems:
+      - air_brake_components
+      - abs_ebs_modules
+      - retarder_systems
+    
+    emission_systems:
+      - scr_adblue_systems
+      - dpf_regeneration_parts
+      - egr_cooler_assemblies
+    
+    electrical_systems:
+      - 24v_components
+      - can_bus_modules
+      - telematics_units
+
+parts_categorization:
+  universal_categories:
+    engine:
+      - filters: "oil, air, fuel, cabin"
+      - belts: "timing, serpentine, v-belt"
+      - cooling: "radiator, thermostat, water_pump"
+      - ignition: "spark_plugs, coils, wires"
+    
+    chassis:
+      - suspension: "shocks, struts, springs, bushings"
+      - steering: "tie_rods, ball_joints, rack_pinion"
+      - brakes: "pads, rotors, calipers, lines"
+    
+    electrical:
+      - battery: "starter_battery, hybrid_battery"
+      - alternator: "standard, high_output"
+      - sensors: "oxygen, maf, map, abs"
+    
+    body:
+      - lighting: "headlights, taillights, fog_lights"
+      - mirrors: "side_mirrors, rear_view"
+      - glass: "windshield, door_glass, rear_glass"
+  
+  ev_specific_parts:
+    battery_systems:
+      - high_voltage_battery_packs
+      - battery_management_systems
+      - cooling_systems
+    
+    charging_components:
+      - onboard_chargers
+      - charging_ports
+      - dc_dc_converters
+    
+    drive_systems:
+      - electric_motors
+      - inverters
+      - reduction_gears
+
+cross_reference_system:
+  mapping_structure:
+    primary_key: "internal_part_number"
+    cross_references:
+      - oem_part_numbers: []
+      - aftermarket_equivalents: []
+      - superseded_numbers: []
+      - alternative_brands: []
+  
+  compatibility_matrix:
+    validation_rules:
+      - vin_range_check
+      - production_date_check
+      - option_code_verification
+      - region_specific_validation
+  
+  quality_tiers:
+    oem:
+      description: "Original Equipment Manufacturer"
+      warranty: "12-36 months"
+      price_index: "100%"
+    
+    oes:
+      description: "Original Equipment Supplier"
+      warranty: "12-24 months"
+      price_index: "80-90%"
+    
+    aftermarket_premium:
+      description: "High quality aftermarket"
+      warranty: "12-18 months"
+      price_index: "60-70%"
+    
+    aftermarket_standard:
+      description: "Standard aftermarket"
+      warranty: "6-12 months"
+      price_index: "40-50%"
+
+technical_data_management:
+  specifications:
+    dimensional_data:
+      - length_width_height
+      - weight
+      - mounting_points
+      - clearances
+    
+    performance_data:
+      - operating_temperature
+      - pressure_ratings
+      - flow_rates
+      - electrical_specifications
+    
+    material_data:
+      - base_materials
+      - coatings
+      - treatments
+      - environmental_resistance
+  
+  documentation:
+    technical_bulletins:
+      - installation_guides
+      - torque_specifications
+      - service_intervals
+      - troubleshooting_guides
+    
+    certification_documents:
+      - iso_certificates
+      - safety_compliance
+      - environmental_compliance
+      - quality_test_reports
+
+inventory_management:
+  stocking_strategies:
+    fast_moving_parts:
+      - oil_filters
+      - air_filters
+      - brake_pads
+      - spark_plugs
+      turnover_target: "12-24 times/year"
+    
+    medium_moving_parts:
+      - alternators
+      - starters
+      - water_pumps
+      - radiators
+      turnover_target: "6-12 times/year"
+    
+    slow_moving_parts:
+      - specialized_sensors
+      - body_panels
+      - interior_trim
+      turnover_target: "2-6 times/year"
+  
+  warehouse_allocation:
+    by_vehicle_type:
+      passenger_cars: "40%"
+      light_commercial: "20%"
+      heavy_commercial: "25%"
+      european_luxury: "10%"
+      special_vehicles: "5%"
+    
+    by_part_category:
+      service_parts: "50%"
+      collision_parts: "20%"
+      performance_parts: "10%"
+      accessories: "10%"
+      tools_equipment: "10%"
+
+pricing_strategy:
+  pricing_tiers:
+    retail_customers:
+      markup: "50-100%"
+      payment_terms: "immediate"
+    
+    professional_workshops:
+      markup: "30-50%"
+      payment_terms: "net_30"
+      volume_discounts: "5-15%"
+    
+    fleet_operators:
+      markup: "20-30%"
+      payment_terms: "net_60"
+      volume_discounts: "10-20%"
+    
+    oem_contracts:
+      markup: "15-20%"
+      payment_terms: "net_90"
+      volume_commitments: "required"
+  
+  dynamic_pricing:
+    factors:
+      - availability
+      - demand_forecast
+      - competitor_pricing
+      - seasonal_trends
+      - currency_fluctuations
+
+integration_requirements:
+  external_systems:
+    manufacturer_systems:
+      - parts_catalog_apis
+      - warranty_validation
+      - recall_notifications
+      - technical_updates
+    
+    supplier_systems:
+      - inventory_availability
+      - pricing_updates
+      - order_placement
+      - shipment_tracking
+    
+    customer_systems:
+      - online_ordering_portals
+      - inventory_visibility
+      - pricing_transparency
+      - delivery_tracking
+  
+  data_standards:
+    formats:
+      - aces_pies: "aftermarket_catalog_standard"
+      - tecdoc: "european_parts_standard"
+      - jnx: "japanese_parts_exchange"
+      - edifact: "electronic_data_interchange"
+    
+    communication_protocols:
+      - rest_api
+      - soap_xml
+      - ftp_sftp
+      - as2_edi
+
+compliance_requirements:
+  japanese_regulations:
+    - road_transport_vehicle_act
+    - product_liability_law
+    - recycling_regulations
+    - jis_standards
+  
+  european_regulations:
+    - type_approval_directive
+    - reach_compliance
+    - rohs_directive
+    - ce_marking
+  
+  commercial_vehicle_regulations:
+    - dot_fmcsa_requirements
+    - adr_dangerous_goods
+    - tachograph_regulations
+    - weight_dimension_limits
+
+quality_assurance:
+  inspection_procedures:
+    incoming_inspection:
+      - visual_check
+      - dimension_verification
+      - function_testing
+      - documentation_review
+    
+    storage_conditions:
+      - temperature_control
+      - humidity_control
+      - shelf_life_management
+      - fifo_rotation
+    
+    pre_delivery_check:
+      - order_accuracy
+      - packaging_integrity
+      - documentation_completeness
+      - special_handling_requirements
+
+performance_metrics:
+  operational_kpis:
+    - fill_rate: "> 95%"
+    - order_accuracy: "> 99%"
+    - on_time_delivery: "> 96%"
+    - inventory_turnover: "> 8 times/year"
+  
+  financial_kpis:
+    - gross_margin: "> 35%"
+    - inventory_carrying_cost: "< 15%"
+    - obsolete_inventory: "< 2%"
+    - cash_conversion_cycle: "< 45 days"
+  
+  customer_satisfaction:
+    - net_promoter_score: "> 70"
+    - customer_retention: "> 85%"
+    - complaint_resolution: "< 24 hours"
+    - technical_support_rating: "> 4.5/5"
+
+future_readiness:
+  emerging_technologies:
+    - electric_vehicle_parts
+    - autonomous_driving_components
+    - hydrogen_fuel_cell_parts
+    - carbon_fiber_components
+  
+  digital_transformation:
+    - ai_powered_demand_forecasting
+    - blockchain_traceability
+    - iot_inventory_tracking
+    - ar_parts_identification
+  
+  sustainability_initiatives:
+    - remanufactured_parts_program
+    - recycling_partnerships
+    - carbon_neutral_logistics
+    - eco_friendly_packaging
+
+---
+# This specification defines comprehensive multi-brand parts management
+# Covers all Japanese, European, and commercial vehicle manufacturers
+# Enables efficient cross-reference and compatibility management
