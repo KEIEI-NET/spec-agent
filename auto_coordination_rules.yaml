@@ -1,0 +1,81 @@
+# 自動車アフター業界向けAgent間連携ルール
+
+agent_coordination:
+  workflow:
+    - name: "業界要件調査"
+      primary: auto-requirement-agent
+      support: 
+        - auto-compliance-agent
+      output: 
+        - auto_requirement_spec.md
+        - business_flow.md
+      
+    - name: "法規制確認"
+      primary: auto-compliance-agent
+      support:
+        - auto-requirement-agent
+      output:
+        - legal_requirements.md
+        - compliance_checklist.md
+        
+    - name: "システム設計"
+      primary: auto-system-architect-agent
+      support:
+        - auto-requirement-agent
+        - auto-compliance-agent
+        - auto-integration-agent
+      input:
+        - auto_requirement_spec.md
+        - legal_requirements.md
+      output: 
+        - auto_architecture_design.md
+        - data_model_auto.md
+        
+    - name: "外部連携設計"
+      primary: auto-integration-agent
+      support:
+        - auto-system-architect-agent
+      input:
+        - auto_architecture_design.md
+      output:
+        - integration_spec.md
+        - api_mapping.md
+        
+    - name: "実装仕様"
+      primary: auto-implementation-agent
+      support:
+        - auto-system-architect-agent
+        - auto-integration-agent
+      input:
+        - auto_architecture_design.md
+        - integration_spec.md
+      output:
+        - implementation_spec_auto.md
+        - test_scenarios.md
+        
+    - name: "品質レビュー"
+      primary: auto-qa-reviewer-agent
+      support: all
+      input: all_specifications
+      output: 
+        - compliance_review_report.md
+        - quality_metrics.md
+
+  compliance_gates:
+    - phase: "要求分析完了時"
+      check: "法規制要件の網羅性"
+      reviewer: auto-compliance-agent
+      
+    - phase: "設計完了時"
+      check: "セキュリティ要件の実装可能性"
+      reviewer: auto-compliance-agent
+      
+    - phase: "実装仕様完了時"
+      check: "監査証跡の完全性"
+      reviewer: auto-qa-reviewer-agent
+
+  escalation_path:
+    - level1: 担当Agent間で解決
+    - level2: auto-spec-master-agentが調整
+    - level3: auto-compliance-agentが法的判断
+    - level4: ユーザーに最終確認
