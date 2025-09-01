@@ -1,0 +1,391 @@
+# IATF 16949:2016 品質マネジメントシステム要求事項
+# IATF 16949:2016 Quality Management System Requirements
+# Version: v1.0.0
+# Last Updated: 2025-01-25
+
+standard_information:
+  full_name: "IATF 16949:2016 - Quality management system requirements for automotive production and relevant service parts organizations"
+  issuing_body: "International Automotive Task Force (IATF)"
+  based_on: "ISO 9001:2015"
+  publication_date: "2016-10-01"
+  transition_deadline: "2018-09-14"
+  next_revision: "Expected 2026"
+
+scope_and_application:
+  applicable_organizations:
+    - oem_suppliers
+    - tier_1_suppliers
+    - tier_n_suppliers
+    - aftermarket_parts_manufacturers
+    - service_parts_distributors
+    
+  excluded_organizations:
+    - design_only_organizations
+    - warehousing_only
+    - pure_distributors
+    
+  product_scope:
+    included:
+      - production_parts
+      - service_parts
+      - accessory_parts
+      - assemblies
+      
+    excluded:
+      - industrial_vehicles
+      - motorcycles
+      - special_purpose_vehicles
+
+core_requirements:
+  context_of_organization:
+    understanding_needs:
+      interested_parties:
+        - customers_oem
+        - end_users
+        - regulators
+        - shareholders
+        - employees
+        - suppliers
+        
+      requirements_determination:
+        - customer_specific_requirements
+        - statutory_regulatory
+        - organization_requirements
+        
+  leadership:
+    management_commitment:
+      - quality_policy_establishment
+      - measurable_objectives
+      - management_review
+      - resource_provision
+      
+    organizational_roles:
+      mandatory_assignments:
+        - top_management
+        - customer_representative
+        - quality_representative
+        
+  planning:
+    risk_based_thinking:
+      risk_assessment:
+        - product_risk_analysis
+        - process_risk_analysis
+        - business_risk_evaluation
+        
+      preventive_actions:
+        - contingency_plans
+        - business_continuity
+        - disaster_recovery
+        
+    quality_objectives:
+      characteristics:
+        - measurable
+        - monitored
+        - communicated
+        - updated
+        
+  support:
+    resources:
+      infrastructure:
+        - buildings_workspace
+        - equipment_hardware_software
+        - transportation
+        - information_technology
+        
+      measurement_systems:
+        - calibration_verification
+        - measurement_system_analysis
+        - laboratory_requirements
+        
+    competence:
+      training_requirements:
+        - competence_matrix
+        - training_effectiveness
+        - qualification_records
+        - ongoing_training
+        
+  operation:
+    operational_planning:
+      advanced_product_quality_planning:
+        phases:
+          - planning_and_definition
+          - product_design_development
+          - process_design_development
+          - product_process_validation
+          - feedback_assessment
+          
+      production_part_approval:
+        ppap_elements:
+          - design_records
+          - engineering_change_documents
+          - customer_approval
+          - design_fmea
+          - process_flow_diagrams
+          - process_fmea
+          - control_plan
+          - measurement_system_analysis
+          - dimensional_results
+          - material_test_results
+          - initial_process_studies
+          - qualified_laboratory_documentation
+          - appearance_approval_report
+          - sample_production_parts
+          - master_sample
+          - checking_aids
+          - customer_specific_requirements
+          - part_submission_warrant
+          
+  performance_evaluation:
+    monitoring_measurement:
+      key_performance_indicators:
+        - customer_satisfaction
+        - delivery_performance
+        - quality_performance
+        - cost_performance
+        
+      internal_audit:
+        frequency: "annual_minimum"
+        scope: "all_processes"
+        auditor_qualification: "certified_required"
+        
+    management_review:
+      frequency: "minimum_annual"
+      inputs:
+        - audit_results
+        - customer_feedback
+        - process_performance
+        - nonconformities
+        - corrective_actions
+        - previous_actions
+        - changes_affecting_qms
+        - improvement_recommendations
+        
+  improvement:
+    nonconformity_management:
+      problem_solving:
+        methodologies:
+          - 8d_process
+          - six_sigma
+          - root_cause_analysis
+          - five_why_analysis
+          
+      corrective_action:
+        steps:
+          - containment
+          - root_cause_identification
+          - systemic_correction
+          - effectiveness_verification
+          
+    continuous_improvement:
+      methodologies:
+        - kaizen
+        - lean_manufacturing
+        - total_productive_maintenance
+        - statistical_process_control
+
+automotive_specific_requirements:
+  core_tools:
+    apqp:
+      description: "Advanced Product Quality Planning"
+      deliverables:
+        - project_plan
+        - design_goals
+        - reliability_goals
+        - preliminary_bom
+        - process_flow
+        - preliminary_capability
+        
+    fmea:
+      types:
+        design_fmea:
+          - system_fmea
+          - subsystem_fmea
+          - component_fmea
+          
+        process_fmea:
+          - manufacturing_fmea
+          - assembly_fmea
+          
+      risk_priority_number:
+        calculation: "severity × occurrence × detection"
+        threshold: "< 100 recommended"
+        
+    msa:
+      description: "Measurement System Analysis"
+      studies:
+        - bias
+        - linearity
+        - stability
+        - repeatability
+        - reproducibility
+        
+      acceptance_criteria:
+        grr_percentage: "< 10% excellent, < 30% acceptable"
+        
+    spc:
+      description: "Statistical Process Control"
+      control_charts:
+        - x_bar_r
+        - x_bar_s
+        - p_chart
+        - c_chart
+        - u_chart
+        
+      capability_indices:
+        cp: "> 1.33"
+        cpk: "> 1.33"
+        pp: "> 1.67"
+        ppk: "> 1.67"
+        
+    ppap:
+      description: "Production Part Approval Process"
+      submission_levels:
+        level_1: "warrant_only"
+        level_2: "warrant_with_product_samples"
+        level_3: "warrant_samples_and_limited_data"
+        level_4: "warrant_and_other_requirements"
+        level_5: "warrant_samples_and_complete_data"
+
+customer_specific_requirements:
+  oem_requirements:
+    toyota:
+      - supplier_quality_assurance_manual
+      - green_procurement_guidelines
+      
+    honda:
+      - supplier_qualifications_manual
+      - environmental_requirements
+      
+    nissan:
+      - anpqp_requirements
+      - supplier_quality_standards
+      
+    general_motors:
+      - gm_specific_requirements
+      - biqs_integration
+      
+    ford:
+      - q1_certification
+      - mmog_le_compliance
+
+documentation_requirements:
+  documented_information:
+    mandatory_documents:
+      - quality_manual
+      - quality_policy
+      - quality_objectives
+      - organizational_chart
+      
+    mandatory_records:
+      - management_review_minutes
+      - training_records
+      - calibration_records
+      - internal_audit_reports
+      - corrective_action_records
+      - customer_satisfaction_data
+      
+  retention_periods:
+    production_part_approval: "part_life_plus_1_year"
+    quality_records: "minimum_3_years"
+    calibration_records: "minimum_3_years"
+    internal_audits: "minimum_3_years"
+
+certification_process:
+  initial_certification:
+    stages:
+      stage_1: "readiness_review"
+      stage_2: "compliance_audit"
+      
+    timeline: "12-18_months_typical"
+    
+  surveillance_audits:
+    frequency: "annual"
+    scope: "sampled_processes"
+    
+  recertification:
+    frequency: "every_3_years"
+    scope: "complete_system"
+    
+  transition_audits:
+    triggers:
+      - standard_revision
+      - major_nonconformity
+      - significant_changes
+
+technology_integration:
+  industry_4_0:
+    digital_quality:
+      - real_time_monitoring
+      - predictive_quality
+      - automated_inspection
+      - digital_twin
+      
+    data_analytics:
+      - big_data_analysis
+      - machine_learning
+      - ai_quality_prediction
+      
+  cybersecurity:
+    requirements:
+      - risk_assessment
+      - access_control
+      - data_protection
+      - incident_response
+
+performance_metrics:
+  key_indicators:
+    quality:
+      - ppm_defect_rate: "< 100"
+      - first_pass_yield: "> 95%"
+      - customer_complaints: "< 5_per_million"
+      
+    delivery:
+      - on_time_delivery: "> 98%"
+      - premium_freight: "< 1%"
+      
+    cost:
+      - cost_of_poor_quality: "< 2%_of_sales"
+      - scrap_rate: "< 1%"
+      
+    service:
+      - response_time: "< 24_hours"
+      - resolution_time: "< 72_hours"
+
+implementation_roadmap:
+  preparation_phase:
+    duration: "3-6_months"
+    activities:
+      - gap_analysis
+      - training_plan
+      - resource_allocation
+      
+  implementation_phase:
+    duration: "6-9_months"
+    activities:
+      - process_development
+      - documentation_creation
+      - system_deployment
+      
+  certification_phase:
+    duration: "3-6_months"
+    activities:
+      - internal_audits
+      - management_review
+      - certification_audit
+
+common_nonconformities:
+  major_findings:
+    - lack_of_customer_specific_requirements
+    - inadequate_risk_assessment
+    - missing_contingency_plans
+    - insufficient_measurement_system_analysis
+    
+  minor_findings:
+    - incomplete_training_records
+    - outdated_procedures
+    - missing_calibration_labels
+    - inadequate_supplier_monitoring
+
+---
+# This configuration defines IATF 16949:2016 requirements for automotive quality management
+# Used by parts-commerce sector agents for quality system specification generation

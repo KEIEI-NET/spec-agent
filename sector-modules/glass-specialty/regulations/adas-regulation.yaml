@@ -1,0 +1,342 @@
+# ADAS校正規制要件定義
+# ADAS Calibration Regulatory Requirements
+# Version: v1.0.0
+# Last Updated: 2025-01-25
+
+regulatory_overview:
+  primary_regulations:
+    japan:
+      - name: "道路運送車両の保安基準"
+      - article: "第44条の2（先進安全装置）"
+      - enforcement_date: "2021-04-01"
+      - authority: "国土交通省"
+      
+    international:
+      - un_ece_r79: "Steering equipment"
+      - un_ece_r131: "Advanced Emergency Braking System"
+      - un_ece_r130: "Lane Departure Warning System"
+      - un_ece_r151: "Blind Spot Detection"
+      - iso_26262: "Functional Safety"
+
+adas_systems_covered:
+  forward_collision_warning:
+    abbreviation: "FCW"
+    sensors:
+      - radar
+      - camera
+      - lidar
+    calibration_trigger:
+      - windshield_replacement
+      - front_bumper_repair
+      - sensor_adjustment
+      - alignment_change
+      
+  automatic_emergency_braking:
+    abbreviation: "AEB"
+    criticality: "safety_critical"
+    calibration_accuracy: "±0.5 degrees"
+    verification_required: true
+    
+  lane_departure_warning:
+    abbreviation: "LDW"
+    camera_types:
+      - mono_camera
+      - stereo_camera
+    mounting_position: "windshield_upper_center"
+    
+  lane_keeping_assist:
+    abbreviation: "LKA"
+    integration: "electric_power_steering"
+    calibration_complexity: "high"
+    
+  adaptive_cruise_control:
+    abbreviation: "ACC"
+    radar_types:
+      - short_range: "24GHz"
+      - long_range: "77GHz"
+    alignment_tolerance: "±0.3 degrees"
+    
+  blind_spot_detection:
+    abbreviation: "BSD"
+    sensor_location: "rear_bumper_corners"
+    coverage_angle: "±70 degrees"
+    
+  parking_assist:
+    abbreviation: "PA"
+    sensor_types:
+      - ultrasonic
+      - surround_view_cameras
+    calibration_space: "minimum_6m_x_6m"
+
+calibration_requirements:
+  facility_standards:
+    space_requirements:
+      minimum_length: "10 meters"
+      minimum_width: "6 meters"
+      minimum_height: "3 meters"
+      floor_levelness: "±3mm per 3m"
+      
+    environmental_conditions:
+      temperature: "15-25°C"
+      humidity: "45-75%"
+      lighting: "uniform_500-1000_lux"
+      electromagnetic_interference: "minimal"
+      
+    equipment_requirements:
+      calibration_targets:
+        oem_specific: "mandatory"
+        universal_targets: "limited_use"
+        
+      diagnostic_tools:
+        oem_scan_tools: "required"
+        aftermarket_tools: "certified_only"
+        
+      measurement_devices:
+        laser_alignment: "±0.1 degree accuracy"
+        distance_measurement: "±5mm accuracy"
+        
+  technician_certification:
+    qualification_levels:
+      basic:
+        training_hours: 16
+        systems_covered: "basic_adas"
+        renewal: "2 years"
+        
+      advanced:
+        training_hours: 40
+        systems_covered: "all_adas"
+        practical_assessment: true
+        renewal: "annually"
+        
+      manufacturer_specific:
+        oem_training: "required"
+        model_specific: true
+        certification_validity: "2 years"
+        
+    certification_bodies:
+      - japan_automobile_service_promotion_association
+      - automotive_glass_safety_council
+      - oem_training_centers
+      
+  documentation_requirements:
+    pre_calibration:
+      - vehicle_identification
+      - system_diagnostics
+      - damage_assessment
+      - component_verification
+      
+    calibration_process:
+      - procedure_followed
+      - target_positioning
+      - adjustment_values
+      - error_codes_cleared
+      
+    post_calibration:
+      - system_verification
+      - test_drive_results
+      - calibration_certificate
+      - warranty_documentation
+      
+    retention_period: "5 years minimum"
+
+glass_replacement_specific:
+  windshield_requirements:
+    adas_compatible:
+      optical_quality: "zero_distortion_zone"
+      camera_window: "hydrophobic_coating_compatible"
+      bracket_alignment: "±0.5mm tolerance"
+      
+    installation_standards:
+      adhesive_type: "oem_approved"
+      cure_time: "minimum_per_manufacturer"
+      mounting_accuracy: "±1mm position"
+      
+  calibration_triggers:
+    mandatory_calibration:
+      - windshield_replacement
+      - camera_removal
+      - bracket_adjustment
+      - accident_damage
+      
+    recommended_calibration:
+      - suspension_modification
+      - tire_size_change
+      - wheel_alignment
+      
+  verification_procedures:
+    static_calibration:
+      target_placement: "precise_measurement"
+      vehicle_positioning: "level_surface"
+      steering_wheel: "centered"
+      
+    dynamic_calibration:
+      road_conditions: "clear_lane_markings"
+      speed_requirement: "specified_range"
+      distance: "manufacturer_specified"
+      
+    combined_calibration:
+      sequence: "static_then_dynamic"
+      verification: "both_required"
+
+quality_assurance:
+  calibration_validation:
+    system_checks:
+      - dtc_scan: "no_active_codes"
+      - sensor_communication: "all_responding"
+      - alignment_verification: "within_spec"
+      
+    functional_testing:
+      - warning_activation
+      - intervention_testing
+      - range_verification
+      
+    documentation:
+      - calibration_report
+      - test_results
+      - customer_signature
+      
+  error_handling:
+    calibration_failure:
+      immediate_actions:
+        - system_diagnosis
+        - component_inspection
+        - reattempt_calibration
+        
+      escalation:
+        - technical_support
+        - oem_assistance
+        - component_replacement
+        
+    liability_management:
+      disclaimer_requirements:
+        - system_limitations
+        - driver_responsibility
+        - maintenance_requirements
+        
+      insurance_considerations:
+        - coverage_verification
+        - liability_limits
+        - documentation_requirements
+
+oem_specific_requirements:
+  toyota_safety_sense:
+    versions: ["TSS 2.0", "TSS 2.5", "TSS 3.0"]
+    calibration_tool: "Toyota Techstream"
+    special_requirements:
+      - dealer_notification
+      - remote_calibration_support
+      
+  honda_sensing:
+    camera_types: ["mono", "stereo"]
+    calibration_method: "static_only"
+    target_specifications: "honda_specific"
+    
+  subaru_eyesight:
+    stereo_camera_system: true
+    calibration_complexity: "high"
+    specialized_training: "required"
+    
+  nissan_propilot:
+    integrated_systems: true
+    calibration_sequence: "specific_order"
+    verification_drive: "mandatory"
+    
+  mazda_i_activsense:
+    multiple_sensors: true
+    calibration_time: "2-3 hours"
+    special_tools: "mazda_specific"
+
+future_technology_provisions:
+  level_3_automation:
+    expected_timeline: "2025-2027"
+    additional_requirements:
+      - redundant_systems
+      - fail_safe_mechanisms
+      - black_box_recording
+      
+  level_4_automation:
+    pilot_programs: "2027-2030"
+    infrastructure_needs:
+      - v2x_communication
+      - high_precision_maps
+      - remote_monitoring
+      
+  new_sensor_technologies:
+    solid_state_lidar:
+      calibration_methods: "under_development"
+      
+    4d_imaging_radar:
+      accuracy_requirements: "enhanced"
+      
+    thermal_cameras:
+      calibration_standards: "drafting"
+
+compliance_verification:
+  audit_requirements:
+    internal_audits:
+      frequency: "quarterly"
+      scope: "all_procedures"
+      
+    external_audits:
+      certification_body: "authorized_inspector"
+      frequency: "annual"
+      
+    oem_audits:
+      trigger: "quality_issues"
+      scope: "comprehensive"
+      
+  performance_metrics:
+    calibration_success_rate: "> 98%"
+    first_time_right: "> 95%"
+    customer_satisfaction: "> 4.5/5"
+    warranty_claims: "< 0.5%"
+    
+  continuous_improvement:
+    training_updates: "quarterly"
+    procedure_reviews: "semi-annual"
+    equipment_calibration: "annual"
+    technology_updates: "as_released"
+
+enforcement_and_penalties:
+  regulatory_violations:
+    improper_calibration:
+      penalty: "¥500,000 - ¥1,000,000"
+      license_impact: "suspension_possible"
+      
+    documentation_failure:
+      penalty: "¥100,000 - ¥300,000"
+      corrective_action: "required"
+      
+    accident_liability:
+      investigation: "mandatory"
+      liability_determination: "case_by_case"
+      insurance_impact: "coverage_void_possible"
+
+integration_requirements:
+  data_management:
+    calibration_database:
+      vehicle_history: "maintained"
+      procedure_library: "updated"
+      technician_records: "tracked"
+      
+    reporting_systems:
+      regulatory_reports: "monthly"
+      oem_feedback: "incident_based"
+      industry_statistics: "quarterly"
+      
+  system_interfaces:
+    diagnostic_tools:
+      protocol: "OBD-II / CAN"
+      data_format: "J2534"
+      
+    calibration_equipment:
+      connectivity: "ethernet / wifi"
+      data_exchange: "xml / json"
+      
+    documentation_systems:
+      format: "pdf / digital_signature"
+      storage: "cloud / local_backup"
+
+---
+# This configuration defines ADAS calibration regulatory requirements
+# Used by glass-specialty sector agents for ADAS calibration specification generation

@@ -1,0 +1,331 @@
+# 製造物責任法（PL法）準拠要件定義
+# Product Liability Law Compliance Requirements
+# Version: v1.0.0
+# Last Updated: 2025-01-25
+
+law_information:
+  name_ja: "製造物責任法"
+  name_en: "Product Liability Law"
+  law_number: "平成6年法律第85号"
+  enacted_date: "1994-07-01"
+  effective_date: "1995-07-01"
+  latest_revision: "2017-06-02"
+  regulatory_authority: "消費者庁"
+
+scope_and_definitions:
+  covered_products:
+    definition: "製造又は加工された動産"
+    automotive_parts:
+      - engine_components
+      - transmission_parts
+      - suspension_components
+      - brake_systems
+      - electrical_components
+      - body_parts
+      - safety_equipment
+      
+  excluded_items:
+    - unprocessed_raw_materials
+    - real_estate
+    - software_only_products
+    - services
+    
+  manufacturer_definition:
+    categories:
+      actual_manufacturer: "実際に製造・加工した者"
+      brand_owner: "自己の商標等を付した者"
+      importer: "輸入した者"
+      substantial_manufacturer: "実質的製造業者と認められる者"
+
+liability_requirements:
+  defect_types:
+    design_defect:
+      description: "設計上の欠陥"
+      examples:
+        - insufficient_strength_calculation
+        - inadequate_safety_margin
+        - foreseeable_misuse_not_considered
+        
+    manufacturing_defect:
+      description: "製造上の欠陥"
+      examples:
+        - deviation_from_specifications
+        - quality_control_failure
+        - assembly_errors
+        
+    warning_defect:
+      description: "指示・警告上の欠陥"
+      examples:
+        - inadequate_instructions
+        - missing_safety_warnings
+        - unclear_usage_limitations
+        
+  liability_period:
+    general_rule: "製造物を引き渡した時から10年"
+    exception: "損害が生じた時から3年（時効）"
+    
+  burden_of_proof:
+    plaintiff_must_prove:
+      - defect_existence
+      - damage_occurrence
+      - causal_relationship
+      
+    manufacturer_defense:
+      - development_risk_defense
+      - compliance_with_standards
+      - component_manufacturer_defense
+
+quality_assurance_requirements:
+  documentation:
+    design_records:
+      retention_period: "10年以上"
+      contents:
+        - design_calculations
+        - risk_assessments
+        - test_results
+        - design_reviews
+        
+    manufacturing_records:
+      retention_period: "10年以上"
+      contents:
+        - production_lot_records
+        - inspection_results
+        - non_conformity_reports
+        - corrective_actions
+        
+    distribution_records:
+      retention_period: "10年以上"
+      contents:
+        - customer_information
+        - delivery_dates
+        - serial_numbers
+        - warranty_claims
+        
+  traceability:
+    forward_traceability:
+      from_manufacturer_to: "end_user"
+      tracking_method: "serial_number_or_lot_number"
+      
+    backward_traceability:
+      from_defect_to: "root_cause"
+      investigation_capability: "within_48_hours"
+      
+  testing_requirements:
+    safety_testing:
+      standards_compliance:
+        - JIS_standards
+        - industry_standards
+        - international_standards
+        
+      test_types:
+        - functional_testing
+        - durability_testing
+        - environmental_testing
+        - misuse_testing
+        
+    third_party_certification:
+      recommended_for:
+        - safety_critical_parts
+        - new_technology_products
+        - exported_products
+
+risk_management:
+  risk_assessment:
+    methodology:
+      - hazard_identification
+      - risk_estimation
+      - risk_evaluation
+      - risk_reduction
+      
+    documentation:
+      fmea: "Failure Mode and Effects Analysis"
+      fta: "Fault Tree Analysis"
+      hazop: "Hazard and Operability Study"
+      
+  preventive_measures:
+    design_stage:
+      - inherent_safety_design
+      - protective_measures
+      - user_information
+      
+    manufacturing_stage:
+      - process_control
+      - inspection_procedures
+      - quality_gates
+      
+    post_market:
+      - complaint_monitoring
+      - field_failure_analysis
+      - continuous_improvement
+
+insurance_requirements:
+  pl_insurance:
+    coverage_recommendation:
+      bodily_injury: "¥100 million minimum"
+      property_damage: "¥50 million minimum"
+      per_occurrence: "¥300 million"
+      annual_aggregate: "¥1 billion"
+      
+    coverage_scope:
+      territories: "worldwide"
+      retroactive_date: "policy_inception"
+      extended_reporting: "5 years"
+      
+  recall_insurance:
+    coverage_elements:
+      - notification_costs
+      - transportation_costs
+      - replacement_costs
+      - disposal_costs
+      - third_party_costs
+
+labeling_and_warnings:
+  mandatory_information:
+    product_identification:
+      - manufacturer_name
+      - product_name_model
+      - serial_lot_number
+      - manufacturing_date
+      
+    safety_information:
+      - usage_instructions
+      - safety_warnings
+      - maintenance_requirements
+      - disposal_instructions
+      
+  warning_design:
+    hierarchy:
+      1_eliminate_hazard: "design_out"
+      2_guard_against: "physical_barriers"
+      3_warn: "labels_and_instructions"
+      
+    effectiveness_criteria:
+      - conspicuous_placement
+      - clear_language
+      - appropriate_symbols
+      - durability
+
+recall_procedures:
+  detection_and_decision:
+    trigger_events:
+      - serious_injury_incident
+      - multiple_similar_complaints
+      - test_failure
+      - regulatory_notification
+      
+    decision_timeline:
+      initial_assessment: "24 hours"
+      investigation: "72 hours"
+      recall_decision: "7 days"
+      
+  notification_requirements:
+    authorities:
+      - consumer_affairs_agency
+      - mlit (for automotive)
+      - meti (for industrial products)
+      
+    customers:
+      direct_notification: "registered_owners"
+      public_notification: "media_and_website"
+      
+    timeline:
+      authority_notification: "immediately"
+      customer_notification: "within_7_days"
+      
+  execution:
+    recall_methods:
+      - repair
+      - replacement
+      - refund
+      
+    effectiveness_monitoring:
+      target_completion: "> 80%"
+      progress_reporting: "monthly"
+      final_report: "upon_completion"
+
+automotive_specific_requirements:
+  critical_safety_parts:
+    enhanced_requirements:
+      - 100%_inspection
+      - redundant_safety_features
+      - fail_safe_design
+      
+    examples:
+      - brake_components
+      - steering_components
+      - airbag_systems
+      - seat_belts
+      
+  aftermarket_parts:
+    quality_equivalence:
+      performance: "OEM_equivalent"
+      durability: "OEM_equivalent"
+      safety: "OEM_equivalent_or_better"
+      
+    certification:
+      voluntary_standards:
+        - japia_certification
+        - napac_certification
+        - capa_certification
+
+international_considerations:
+  export_products:
+    compliance_required:
+      - destination_country_laws
+      - international_standards
+      - ce_marking (EU)
+      - ccc_marking (China)
+      
+  import_products:
+    importer_responsibilities:
+      - full_pl_liability
+      - japanese_labeling
+      - technical_documentation
+      - local_representative
+
+digital_transformation:
+  electronic_records:
+    validity_requirements:
+      - electronic_signatures
+      - timestamp_verification
+      - audit_trail
+      - backup_systems
+      
+  iot_integration:
+    real_time_monitoring:
+      - usage_data_collection
+      - predictive_failure_analysis
+      - remote_diagnostics
+      
+  blockchain_application:
+    use_cases:
+      - immutable_quality_records
+      - supply_chain_transparency
+      - authenticity_verification
+
+enforcement_and_penalties:
+  civil_liability:
+    compensation_scope:
+      - medical_expenses
+      - lost_income
+      - pain_and_suffering
+      - property_damage
+      
+    punitive_damages:
+      current_status: "not_applicable_in_japan"
+      
+  administrative_actions:
+    - product_recall_order
+    - sales_suspension
+    - import_prohibition
+    - public_announcement
+    
+  criminal_penalties:
+    applicable_when:
+      - willful_violation
+      - false_reporting
+      - recall_non_compliance
+
+---
+# This configuration defines Product Liability Law requirements for automotive parts commerce
+# Used by parts-commerce sector agents for compliance verification and specification generation

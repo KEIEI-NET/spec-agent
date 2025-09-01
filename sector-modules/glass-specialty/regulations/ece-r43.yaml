@@ -1,0 +1,319 @@
+# ECE R43 自動車用安全ガラス規則
+# ECE Regulation No. 43 - Safety Glazing Materials
+# Version: v1.0.0
+# Last Updated: 2025-01-25
+
+regulation_information:
+  official_title: "Uniform provisions concerning the approval of safety glazing materials and their installation on vehicles"
+  regulation_number: "ECE R43"
+  latest_revision: "Rev.4"
+  effective_date: "2019-10-14"
+  issuing_body: "United Nations Economic Commission for Europe (UNECE)"
+  japanese_adoption: "JIS R 3211/3212 harmonized"
+
+scope_and_application:
+  covered_materials:
+    tempered_glass:
+      types:
+        - uniformly_toughened
+        - zone_toughened
+        - flat_glass
+        - curved_glass
+      applications:
+        - side_windows
+        - rear_windows
+        - sunroofs
+        
+    laminated_glass:
+      types:
+        - ordinary_laminated
+        - treated_laminated
+        - acoustic_laminated
+        - security_laminated
+      interlayer_materials:
+        - pvb: "polyvinyl butyral"
+        - eva: "ethylene vinyl acetate"
+        - tpu: "thermoplastic polyurethane"
+        
+    plastic_glazing:
+      types:
+        - rigid_plastic
+        - flexible_plastic
+        - plastic_coated_glass
+      materials:
+        - polycarbonate
+        - acrylic
+        - polyurethane
+        
+  vehicle_categories:
+    m_category: "passenger vehicles"
+    n_category: "commercial vehicles"
+    o_category: "trailers"
+    l_category: "motorcycles"
+
+technical_requirements:
+  optical_properties:
+    light_transmission:
+      windshield:
+        regular: "≥ 70%"
+        tinted_zone: "≥ 70% below 10cm from top"
+        
+      driver_side_windows:
+        front_side: "≥ 70%"
+        
+      other_windows:
+        passenger_side: "no minimum requirement"
+        rear_windows: "no minimum requirement"
+        
+    optical_distortion:
+      primary_vision_area:
+        angular_deviation: "< 2 arc minutes"
+        optical_power: "< 0.10 diopters"
+        
+      secondary_vision_area:
+        angular_deviation: "< 6 arc minutes"
+        optical_power: "< 0.25 diopters"
+        
+    secondary_image_separation:
+      maximum_angle: "< 15 arc minutes"
+      measurement_method: "target method"
+      
+  mechanical_properties:
+    impact_resistance:
+      ball_drop_test:
+        ball_mass: "227g ± 2g"
+        drop_heights:
+          tempered: "2.0m minimum"
+          laminated: "4.0m to 9.0m"
+          
+      headform_test:
+        adult_headform: "4.8kg"
+        child_headform: "3.3kg"
+        impact_energy: "specified by glass type"
+        
+    fragmentation:
+      tempered_glass:
+        fragment_count: "40-400 per 50mm x 50mm"
+        longest_fragment: "< 75mm"
+        spline_fragments: "limited"
+        
+      laminated_glass:
+        adhesion_requirement: "interlayer retention"
+        penetration_resistance: "specified impact levels"
+        
+    mechanical_strength:
+      four_point_bending:
+        stress_level: "specified by thickness"
+        
+      thermal_stress:
+        temperature_differential: "40°C"
+        
+  environmental_resistance:
+    abrasion_resistance:
+      taber_test:
+        cycles: "100 or 1000"
+        haze_increase: "< 2%"
+        
+      wiper_test:
+        cycles: "500,000"
+        visibility_retention: "specified"
+        
+    chemical_resistance:
+      test_chemicals:
+        - soap_solution
+        - window_cleaner
+        - petrol
+        - methylated_spirit
+        
+    weathering_resistance:
+      uv_exposure: "500 hours minimum"
+      humidity_cycle: "2 weeks"
+      temperature_cycle: "-40°C to +70°C"
+      
+  fire_resistance:
+    burn_rate:
+      horizontal: "< 110mm/minute"
+      vertical: "self-extinguishing"
+      
+    smoke_generation:
+      optical_density: "specified limits"
+
+marking_requirements:
+  mandatory_markings:
+    approval_mark:
+      e_mark: "E + country code"
+      circle_diameter: "minimum 8mm"
+      
+    manufacturer_identification:
+      trade_name: "required"
+      trademark: "required"
+      
+    glass_type_code:
+      i: "windscreen - toughened"
+      ii: "windscreen - ordinary laminated"
+      iii: "windscreen - treated laminated"
+      iv: "windscreen - plastic coated"
+      v: "other than windscreen - tempered"
+      vi: "other than windscreen - laminated"
+      vii: "double-glazed unit"
+      
+    additional_symbols:
+      adas_compatible: "/A"
+      heated_glass: "/H"
+      privacy_glass: "/P"
+      
+  marking_location:
+    visibility: "clearly visible after installation"
+    permanence: "indelible marking"
+    position: "bottom corner preferred"
+
+installation_requirements:
+  windshield_installation:
+    mounting_method:
+      adhesive_bonding:
+        adhesive_type: "polyurethane"
+        primer_required: true
+        cure_time: "manufacturer specified"
+        
+      mechanical_mounting:
+        gasket_type: "epdm rubber"
+        retention_system: "specified"
+        
+    safety_requirements:
+      retention_strength: "specified pull-out force"
+      crash_performance: "occupant retention"
+      pedestrian_protection: "head impact criteria"
+      
+  side_window_installation:
+    drop_glass:
+      guide_channels: "proper alignment"
+      anti_pinch: "if power operated"
+      
+    fixed_glass:
+      mounting: "adhesive or mechanical"
+      sealing: "weather resistant"
+      
+  special_considerations:
+    adas_equipped_vehicles:
+      optical_requirements: "enhanced"
+      camera_zones: "distortion free"
+      sensor_windows: "specific coatings"
+      
+    heated_glass:
+      electrical_safety: "insulation requirements"
+      visibility_zones: "heating element restrictions"
+      
+    hud_compatible:
+      wedge_angle: "specified for double image"
+      coating_requirements: "anti-reflection"
+
+testing_procedures:
+  type_approval_tests:
+    initial_testing:
+      sample_size: "specified per test"
+      test_sequence: "predetermined order"
+      pass_criteria: "all samples pass"
+      
+    production_conformity:
+      frequency: "batch testing"
+      sampling_plan: "iso 2859"
+      acceptance_quality_level: "specified"
+      
+  quality_control_tests:
+    routine_tests:
+      visual_inspection: "100%"
+      dimensional_check: "sampling"
+      optical_properties: "sampling"
+      
+    periodic_tests:
+      impact_resistance: "weekly"
+      fragmentation: "daily for tempered"
+      environmental: "monthly"
+      
+  field_inspection:
+    damage_assessment:
+      acceptable_damage:
+        chips: "< 10mm diameter outside A-zone"
+        cracks: "< 30mm outside A-zone"
+        scratches: "shallow only"
+        
+      rejection_criteria:
+        driver_vision_area: "any damage"
+        structural_integrity: "compromised"
+        
+japanese_specific_requirements:
+  jis_standards:
+    jis_r_3211: "laminated glass"
+    jis_r_3212: "tempered glass"
+    harmonization: "aligned with ECE R43"
+    
+  shaken_inspection:
+    inspection_items:
+      - light_transmission
+      - damage_assessment
+      - marking_verification
+      
+    rejection_criteria:
+      - vision_obstruction
+      - structural_damage
+      - illegal_tinting
+      
+  insurance_requirements:
+    coverage_types:
+      comprehensive: "glass_damage_included"
+      glass_specific: "available"
+      
+    claim_requirements:
+      police_report: "if criminal damage"
+      inspection_report: "required"
+
+compliance_verification:
+  certification_process:
+    application:
+      technical_documentation: "complete dossier"
+      test_samples: "specified quantity"
+      
+    testing:
+      accredited_laboratory: "required"
+      witnessed_testing: "possible"
+      
+    approval:
+      certificate_issuance: "upon compliance"
+      validity_period: "indefinite with CoP"
+      
+  market_surveillance:
+    random_testing: "authority discretion"
+    complaint_investigation: "mandatory"
+    recall_procedures: "if non-compliance"
+    
+  penalties:
+    non_compliant_products:
+      sales_ban: "immediate"
+      product_recall: "if safety issue"
+      fines: "specified by country"
+
+future_developments:
+  new_technologies:
+    smart_glass:
+      electrochromic: "under consideration"
+      suspended_particle: "draft standards"
+      liquid_crystal: "research phase"
+      
+    integrated_displays:
+      transparent_oled: "standards development"
+      augmented_reality: "safety assessment"
+      
+    advanced_materials:
+      gorilla_glass: "automotive applications"
+      nanocoatings: "self-cleaning/healing"
+      graphene_enhanced: "research stage"
+      
+  regulatory_updates:
+    expected_revisions:
+      pedestrian_safety: "enhanced requirements"
+      recyclability: "circular economy focus"
+      energy_efficiency: "thermal performance"
+
+---
+# This configuration defines ECE R43 safety glazing requirements
+# Used by glass-specialty sector agents for glass specification compliance
