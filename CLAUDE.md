@@ -1,30 +1,50 @@
 # CLAUDE.md - Claude Code Integration Guide
 
-*Version: v2.0.0*
-*Last Updated: 2025-01-25 00:30 JST*
+*Version: v1.1.0*
+*Last Updated: 2025-09-01 18:25 JST*
 
-This file provides comprehensive guidance to Claude Code (claude.ai/code) when working with the Spec Agent System repository.
+This file provides comprehensive guidance to Claude Code (claude.ai/code) when working with the Spec Agent After repository.
 
 ## 📌 Project Overview
 
-Spec Agent System is a sophisticated Japanese-language specification document generation framework utilizing multiple specialized AI agents. The system orchestrates 6 expert agents to create comprehensive, production-ready software specifications through a structured workflow from initial requirements to detailed implementation specifications.
+Spec Agent After は、自動車アフターマーケット業界に特化した仕様書自動作成システムです。部品商社、ガラス専門、リサイクルの各セクターに対応し、国内外全メーカー（トヨタ、日産、ホンダ、三菱、マツダ、スバル、ダイハツ、スズキ、BMW、メルセデス、アウディ等）の部品管理仕様書を生成します。
 
 ### Key Characteristics
-- **Language**: Primary documentation in Japanese, code comments in English
-- **Architecture**: Multi-agent collaborative system
-- **Integration**: Native Claude Code CLI sub-agent system
-- **Methodology**: Supports waterfall, agile, and hybrid approaches
+- **Industry**: 自動車アフターマーケット業界特化
+- **Coverage**: 全メーカー対応（国産8社、商用車4社、欧州車5社以上）
+- **Architecture**: セクター別マルチエージェントシステム
+- **Integration**: Claude Code CLI ネイティブ統合
+- **Compliance**: 法規制準拠（PL法、IATF 16949、道路運送車両法等）
 
 ## 🏗️ Agent System Architecture
 
-The system consists of 6 specialized agents coordinated through YAML rules:
+### Core Agents (基本エージェント - 7個)
+1. **auto-spec-master-agent.md** - 統括管理
+2. **auto-requirement-agent.md** - 要求分析
+3. **auto-system-architect-agent.md** - システム設計
+4. **auto-implementation-agent.md** - 実装仕様
+5. **auto-integration-agent.md** - 統合仕様
+6. **auto-qa-reviewer-agent.md** - 品質レビュー
+7. **auto-compliance-agent.md** - コンプライアンス
 
-1. **spec-master-agent.md** - Master coordinator managing the entire specification process
-2. **requirement-analyst-agent.md** - Requirements analysis and validation
-3. **system-architect-agent.md** - System architecture and data model design
-4. **implementation-spec-agent.md** - Implementation details, API specs, and test specifications
-5. **technical-writer-agent.md** - Document formatting and consistency
-6. **qa-reviewer-agent.md** - Quality review and validation
+### Sector-Specific Agents (セクター別エージェント - 11個)
+
+#### 部品商社セクター（5エージェント）
+- **parts-catalog-agent.md** - 部品カタログ管理
+- **inventory-forecast-agent.md** - 在庫予測
+- **compliance-verification-agent.md** - コンプライアンス検証
+- **commercial-vehicle-parts-agent.md** - 大型車両部品管理 🆕
+- **european-vehicle-parts-agent.md** - 欧州車部品管理 🆕
+
+#### ガラス専門セクター（3エージェント）
+- **adas-calibration-agent.md** - ADAS校正
+- **glass-specification-agent.md** - ガラス仕様管理
+- **insurance-integration-agent.md** - 保険連携
+
+#### リサイクルセクター（3エージェント）
+- **dismantling-process-agent.md** - 解体工程管理
+- **circular-economy-agent.md** - 循環経済支援
+- **manifest-management-agent.md** - マニフェスト管理
 
 ## 📁 Key Files and Their Purpose
 
@@ -112,24 +132,45 @@ try {
 ## 🚀 Quick Start Commands
 
 ```bash
-# Initialize new project
-@spec-master-agent initialize project "Project Name"
+# 統括エージェントで開始
+@auto-spec-master-agent 部品管理システムの仕様書を作成
 
-# Start requirement analysis
-@requirement-analyst-agent analyze requirements
+# セクター別エージェント呼び出し
+@parts-catalog-agent 全メーカー対応の部品カタログ仕様
+@commercial-vehicle-parts-agent いすゞ・日野対応の大型車両部品管理
+@european-vehicle-parts-agent BMW・ベンツ対応の欧州車部品管理
 
-# Generate architecture
-@system-architect-agent design architecture
+# ガラス専門
+@adas-calibration-agent ADAS校正システム仕様
 
-# Create implementation specs
-@implementation-spec-agent define implementation
-
-# Format all documents
-@technical-writer-agent format all
-
-# Run quality review
-@qa-reviewer-agent review specifications
+# リサイクル
+@dismantling-process-agent 解体工程管理システム仕様
 ```
+
+## 🚗 Supported Manufacturers
+
+### 国産車メーカー
+- トヨタ/レクサス
+- 日産/インフィニティ  
+- ホンダ/アキュラ
+- 三菱
+- マツダ
+- スバル
+- ダイハツ
+- スズキ
+
+### 商用車メーカー
+- いすゞ
+- 日野
+- 三菱ふそう
+- UDトラックス
+
+### 欧州車メーカー
+- BMW/MINI
+- メルセデスベンツ
+- アウディ
+- フォルクスワーゲン
+- ポルシェ
 
 ## 📊 Metrics and Monitoring
 
@@ -159,8 +200,9 @@ Track these metrics in progress.md:
 
 ---
 
-*Last Updated: 2025-01-25 00:30 JST*
-*Version: v2.0.0*
+*Last Updated: 2025-09-01 18:25 JST*
+*Version: v1.1.0*
 
 **Update History:**
-- v2.0.0 (2025-01-25): Complete overhaul with Claude Code specific instructions, added integration guidelines
+- v1.1.0 (2025-09-01): 自動車アフターマーケット業界特化版に更新、全メーカー対応
+- v1.0.0 (2025-01-25): 初版リリース
