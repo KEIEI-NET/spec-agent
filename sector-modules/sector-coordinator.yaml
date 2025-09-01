@@ -1,0 +1,263 @@
+# セクター間連携コーディネーター設定
+# 自動車アフターマーケット業界向け仕様書作成システム
+# Version: 1.0.0
+# Last Updated: 2025-09-01
+
+system:
+  name: "Automotive Aftermarket Specification System"
+  version: "1.0.0"
+  sectors:
+    - parts_commerce
+    - glass_specialty
+    - recycling_compliance
+    - electrical_systems  # Phase 3（将来実装）
+
+# セクター間の仕様書連携ルール
+specification_coordination:
+  # 仕様書の相互参照と整合性確保
+  cross_reference_rules:
+    parts_to_maintenance:
+      enabled: true
+      specifications:
+        - 部品カタログ仕様書
+        - 在庫管理システム仕様書
+        - 品質保証仕様書
+      validation_points:
+        - 部品番号体系の統一
+        - 在庫単位の一致
+        - 納期基準の整合性
+    
+    glass_to_insurance:
+      enabled: true
+      specifications:
+        - ADAS校正仕様書
+        - 保険請求システム仕様書
+        - 作業工程仕様書
+      validation_points:
+        - 損傷評価基準の統一
+        - 作業工数の標準化
+        - 請求コードの整合性
+    
+    recycling_to_parts:
+      enabled: true
+      specifications:
+        - リビルト部品仕様書
+        - 解体工程仕様書
+        - 品質基準仕様書
+      validation_points:
+        - リビルト品番体系
+        - 品質等級の統一
+        - トレーサビリティ確保
+
+# 仕様書作成ワークフロー
+specification_workflow:
+  phases:
+    1_requirement_analysis:
+      lead_sector: "all"
+      deliverables:
+        - セクター別要求仕様書
+        - 法規制要件一覧
+        - 外部連携要件定義
+      
+    2_system_design:
+      lead_sector: "core"
+      deliverables:
+        - 統合システム設計書
+        - データモデル仕様書
+        - インターフェース仕様書
+      
+    3_detailed_specification:
+      lead_sector: "each_sector"
+      deliverables:
+        - 業務フロー仕様書
+        - 画面仕様書
+        - バッチ処理仕様書
+        - API仕様書
+      
+    4_compliance_verification:
+      lead_sector: "compliance"
+      deliverables:
+        - 法規制準拠チェックリスト
+        - リスク評価書
+        - 対策仕様書
+      
+    5_integration_specification:
+      lead_sector: "integration"
+      deliverables:
+        - 外部システム連携仕様書
+        - データ変換仕様書
+        - エラー処理仕様書
+
+# データ共有と標準化
+data_standardization:
+  vehicle_information:
+    # 車両情報の標準化
+    vin_code:
+      format: "ISO 3779"
+      validation: "check_digit"
+    
+    maker_code:
+      standard: "JAMA標準"
+      mapping_required: true
+    
+    model_year:
+      format: "YYYY"
+      source: "10桁目VIN"
+  
+  parts_information:
+    # 部品情報の標準化
+    genuine_number:
+      format: "メーカー別体系"
+      cross_reference: true
+    
+    aftermarket_number:
+      format: "JAPIA標準"
+      validation: "prefix_check"
+    
+    quality_grade:
+      levels:
+        - "新品純正"
+        - "新品優良"
+        - "リビルト"
+        - "中古A"
+        - "中古B"
+  
+  compliance_data:
+    # 法規制データの標準化
+    certification:
+      types:
+        - "保安基準適合"
+        - "JIS認証"
+        - "ISO認証"
+        - "メーカー認定"
+    
+    traceability:
+      required_fields:
+        - "製造番号"
+        - "製造日"
+        - "検査記録"
+        - "出荷証明"
+
+# 仕様書テンプレート管理
+specification_templates:
+  standard_sections:
+    1_overview:
+      - 目的と背景
+      - 適用範囲
+      - 関連文書
+    
+    2_requirements:
+      - 機能要求
+      - 非機能要求
+      - 制約事項
+    
+    3_system_design:
+      - アーキテクチャ
+      - データモデル
+      - 処理フロー
+    
+    4_implementation:
+      - 実装方針
+      - 技術選定
+      - 開発標準
+    
+    5_testing:
+      - テスト方針
+      - テストケース
+      - 品質基準
+    
+    6_operation:
+      - 運用手順
+      - 監視項目
+      - 障害対応
+
+# 品質保証基準
+quality_assurance:
+  specification_review:
+    mandatory_checks:
+      - 要求カバレッジ: "100%"
+      - 法規制準拠: "必須"
+      - 用語統一: "業界標準準拠"
+      - トレーサビリティ: "完全"
+    
+    review_levels:
+      - self_review: "作成者"
+      - peer_review: "同一セクター"
+      - cross_review: "他セクター"
+      - final_review: "品質保証"
+  
+  documentation_standards:
+    format:
+      - file_type: "Markdown"
+      - encoding: "UTF-8"
+      - line_ending: "LF"
+    
+    naming_convention:
+      pattern: "[SECTOR]_[TYPE]_[VERSION]_[DATE].md"
+      example: "PARTS_API_SPEC_v1.0_20250901.md"
+    
+    version_control:
+      - major: "構造変更"
+      - minor: "機能追加"
+      - patch: "修正"
+
+# エスカレーション管理
+escalation_management:
+  conflict_resolution:
+    priority_order:
+      1: "法規制要求"
+      2: "安全要求"
+      3: "顧客要求"
+      4: "効率性"
+    
+    decision_authority:
+      technical: "system-architect-agent"
+      business: "requirement-agent"
+      compliance: "compliance-agent"
+      final: "spec-master-agent"
+  
+  issue_tracking:
+    categories:
+      - "仕様不整合"
+      - "法規制違反"
+      - "技術的制約"
+      - "コスト超過"
+    
+    resolution_sla:
+      critical: "24時間"
+      high: "3営業日"
+      medium: "1週間"
+      low: "2週間"
+
+# 外部連携仕様
+external_integration:
+  common_apis:
+    authentication:
+      method: "OAuth 2.0"
+      token_lifetime: "3600"
+    
+    data_format:
+      request: "JSON"
+      response: "JSON"
+      encoding: "UTF-8"
+    
+    error_handling:
+      retry_count: 3
+      timeout: 30
+      circuit_breaker: true
+  
+  sector_specific:
+    parts_commerce:
+      - JAPIA-EDI
+      - メーカーAPI
+      - 在庫照会API
+    
+    glass_specialty:
+      - 保険会社API
+      - ADAS診断API
+      - 画像認識API
+    
+    recycling_compliance:
+      - JARC-API
+      - 環境省API
+      - 廃棄物追跡API

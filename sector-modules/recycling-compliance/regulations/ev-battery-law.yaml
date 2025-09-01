@@ -1,0 +1,275 @@
+# EV電池リサイクル法規制要件定義
+# EV Battery Recycling Regulatory Requirements
+# Version: v1.0.0
+# Last Updated: 2025-01-25
+
+regulatory_framework:
+  primary_law:
+    name_ja: "自動車リサイクル法改正（EV電池追加）"
+    name_en: "Automobile Recycling Law Amendment (EV Battery Addition)"
+    amendment_date: "2024-06-15"
+    effective_date: "2025-04-01"
+    regulatory_authority: "経済産業省・環境省"
+    
+  related_regulations:
+    - name: "資源有効利用促進法"
+      relevance: "リチウムイオン電池の回収・リサイクル"
+      
+    - name: "廃棄物処理法"
+      relevance: "特別管理産業廃棄物としての取扱い"
+      
+    - name: "消防法"
+      relevance: "危険物としての保管・輸送規制"
+      
+    - name: "労働安全衛生法"
+      relevance: "作業者の安全確保"
+
+battery_types_covered:
+  lithium_ion:
+    subtypes:
+      - "NCM (ニッケル・コバルト・マンガン)"
+      - "NCA (ニッケル・コバルト・アルミニウム)"
+      - "LFP (リン酸鉄リチウム)"
+      - "LTO (チタン酸リチウム)"
+    voltage_range: "200V - 800V"
+    capacity_range: "20kWh - 150kWh"
+    
+  solid_state:
+    status: "2027年以降対応予定"
+    special_requirements: "検討中"
+    
+  nickel_metal_hydride:
+    status: "既存規制適用"
+    special_handling: "HEV用途継続"
+
+safety_requirements:
+  personnel_certification:
+    low_voltage_electrician:
+      required: true
+      certification_body: "電気工事士協会"
+      scope: "DC750V以下"
+      
+    ev_specialist:
+      required: true
+      certification_body: "自動車整備振興会"
+      training_hours: 40
+      renewal_period: "3年"
+      curriculum:
+        - high_voltage_safety
+        - battery_chemistry
+        - emergency_response
+        - dismantling_procedures
+        
+  facility_requirements:
+    electrical_isolation:
+      insulation_mat: "JIS C 2316 Class 0"
+      safety_barriers: "1.8m以上"
+      warning_signs: "高電圧危険表示"
+      
+    fire_protection:
+      sprinkler_system: "リチウム電池対応型"
+      fire_extinguisher: "Class D (金属火災用)"
+      sand_bucket: "最低100kg常備"
+      emergency_shower: "15m以内に設置"
+      
+    ventilation:
+      air_exchange_rate: "6回/時以上"
+      gas_detection: "水素・有機溶剤センサー"
+      emergency_exhaust: "手動起動可能"
+
+handling_procedures:
+  reception_inspection:
+    visual_check:
+      - physical_damage
+      - electrolyte_leakage
+      - swelling_deformation
+      - burn_marks
+      
+    electrical_testing:
+      voltage_measurement: "必須"
+      insulation_resistance: "1MΩ以上"
+      temperature_check: "サーモグラフィー推奨"
+      
+  discharge_protocol:
+    target_voltage: "25V以下（推奨）、60V以下（必須）"
+    
+    discharge_methods:
+      controlled_discharge:
+        equipment: "専用放電装置"
+        rate: "0.1C - 0.2C"
+        monitoring: "continuous"
+        
+      salt_water_immersion:
+        concentration: "3-5%"
+        duration: "24時間以上"
+        container: "非導電性・耐腐食性"
+        
+    verification:
+      voltage_confirmation: "3点測定"
+      documentation: "放電証明書発行"
+      
+  dismantling_process:
+    sequence:
+      1: "外装カバー取外し"
+      2: "高電圧ケーブル切断"
+      3: "冷却システム排出"
+      4: "モジュール分離"
+      5: "セル取出し"
+      
+    tools_required:
+      - insulated_tools: "1000V対応"
+      - protective_equipment: "Class 0 PPE"
+      - lifting_equipment: "定格荷重証明付"
+
+storage_requirements:
+  temporary_storage:
+    duration_limit: "90日以内"
+    
+    container_specifications:
+      material: "UN認証容器"
+      fire_rating: "2時間耐火"
+      ventilation: "防爆仕様換気口"
+      labeling: "危険物表示必須"
+      
+    environmental_conditions:
+      temperature: "5℃ - 35℃"
+      humidity: "20% - 65%"
+      charge_state: "30% SOC以下"
+      
+  segregation_rules:
+    damaged_batteries:
+      isolation_distance: "3m以上"
+      special_container: "砂充填式"
+      monitoring: "24時間温度監視"
+      
+    battery_chemistry:
+      separate_storage: true
+      incompatible_materials:
+        - water_reactive_metals
+        - oxidizing_agents
+        - flammable_liquids
+
+recycling_targets:
+  material_recovery:
+    2025_targets:
+      lithium: "50%以上"
+      cobalt: "90%以上"
+      nickel: "90%以上"
+      copper: "95%以上"
+      aluminum: "95%以上"
+      
+    2030_targets:
+      lithium: "70%以上"
+      cobalt: "95%以上"
+      nickel: "95%以上"
+      graphite: "50%以上"
+      electrolyte: "60%以上"
+      
+  processing_methods:
+    pyrometallurgical:
+      temperature: "1400-1500℃"
+      recovery_focus: "Co, Ni, Cu"
+      energy_consumption: "high"
+      
+    hydrometallurgical:
+      process: "酸浸出・溶媒抽出"
+      recovery_focus: "Li, Co, Ni, Mn"
+      wastewater_treatment: "required"
+      
+    direct_recycling:
+      process: "物理的分離・再生"
+      recovery_focus: "cathode_materials"
+      quality_requirement: "battery_grade"
+
+reporting_obligations:
+  collection_reporting:
+    system: "J-BAT (日本電池回収システム)"
+    frequency: "月次"
+    data_required:
+      - vehicle_vin
+      - battery_serial
+      - chemistry_type
+      - capacity_kwh
+      - collection_date
+      - condition_assessment
+      
+  processing_reporting:
+    submission_to: "JARC + 環境省"
+    deadline: "処理後30日以内"
+    contents:
+      - processing_method
+      - material_recovery_rates
+      - destination_facilities
+      - environmental_data
+      
+  annual_summary:
+    submission_deadline: "翌年4月30日"
+    audit_requirement: "第三者認証"
+
+transportation_requirements:
+  un_classification:
+    un_number: "UN3480 / UN3481"
+    class: "9 (Miscellaneous dangerous goods)"
+    packing_group: "II"
+    
+  packaging:
+    inner_packaging: "non-conductive material"
+    outer_packaging: "UN certified"
+    cushioning: "vibration absorption"
+    orientation: "terminals upward"
+    
+  documentation:
+    dangerous_goods_declaration: true
+    emergency_response_guide: true
+    msds_sheet: true
+    
+  vehicle_requirements:
+    adr_certification: true
+    fire_suppression: "automatic system"
+    driver_training: "dangerous goods license"
+
+penalties:
+  non_compliance:
+    improper_handling:
+      fine: "3年以下の懲役又は300万円以下の罰金"
+      license_suspension: "possible"
+      
+    reporting_violation:
+      fine: "50万円以下の罰金"
+      public_disclosure: true
+      
+    safety_breach:
+      fine: "5年以下の懲役又は500万円以下の罰金"
+      facility_closure: "possible"
+
+future_developments:
+  second_life_applications:
+    stationary_storage: "guidelines under development"
+    quality_standards: "JIS drafting"
+    warranty_framework: "industry discussion"
+    
+  advanced_recycling:
+    battery_passport: "2026 implementation"
+    blockchain_tracking: "pilot projects"
+    automated_dismantling: "R&D phase"
+    
+  international_harmonization:
+    basel_convention: "amendment consideration"
+    iso_standards: "ISO/TC 333 participation"
+    bilateral_agreements: "resource circulation"
+
+system_integration:
+  jarc_api:
+    ev_battery_module: "/api/v2/ev-battery/"
+    data_exchange_format: "JSON"
+    authentication: "OAuth 2.0"
+    
+  traceability:
+    battery_id_system: "QR code + blockchain"
+    lifecycle_tracking: "manufacturing to recycling"
+    ownership_transfer: "digital certificate"
+
+---
+# This configuration defines compliance requirements for EV Battery recycling regulations
+# Effective from April 1, 2025, as part of the Automobile Recycling Law amendment
+# Used by recycling-compliance sector agents for specification generation

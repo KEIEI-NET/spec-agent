@@ -1,0 +1,297 @@
+# JAPIA-EDI連携仕様定義
+# Japan Auto Parts Industries Association EDI Integration Specification
+# Version: v1.0.0
+# Last Updated: 2025-01-25
+
+system_overview:
+  name: "JAPIA-EDI (Japan Auto Parts Industries Association EDI)"
+  description: "日本自動車部品工業会が運営する業界標準EDIシステム"
+  protocol: "EDI-FACT / XML-EDI"
+  network: "JNX (Japanese automotive Network eXchange)"
+  url: "https://www.japia.or.jp/edi/"
+
+connection_requirements:
+  network_specifications:
+    primary_network: "JNX"
+    backup_network: "Internet VPN"
+    bandwidth: "10Mbps minimum"
+    latency: "< 100ms"
+    availability: "99.5%"
+    
+  authentication:
+    method: "Digital Certificate"
+    certificate_authority: "JAPIA-CA"
+    renewal_period: "2 years"
+    multi_factor: true
+    
+  security:
+    encryption: "TLS 1.3"
+    data_signing: "SHA-256 with RSA"
+    ip_whitelist: true
+    firewall_rules: "specific ports only"
+
+message_types:
+  purchase_order:
+    code: "ORDERS"
+    format: "UN/EDIFACT D.96A"
+    segments:
+      - UNH: "Message Header"
+      - BGM: "Beginning of Message"
+      - DTM: "Date/Time/Period"
+      - NAD: "Name and Address"
+      - LIN: "Line Item"
+      - QTY: "Quantity"
+      - PRI: "Price Details"
+      - UNT: "Message Trailer"
+      
+  order_response:
+    code: "ORDRSP"
+    format: "UN/EDIFACT D.96A"
+    response_types:
+      - acceptance: "全量受注"
+      - partial: "一部受注"
+      - rejection: "受注不可"
+      - modification: "条件変更"
+      
+  delivery_schedule:
+    code: "DELFOR"
+    format: "UN/EDIFACT D.96A"
+    schedule_types:
+      - firm: "確定納入指示"
+      - forecast: "内示"
+      - adjustment: "調整指示"
+      
+  advance_shipping_notice:
+    code: "DESADV"
+    format: "UN/EDIFACT D.96A"
+    required_elements:
+      - shipment_id
+      - carrier_info
+      - package_details
+      - item_details
+      - delivery_datetime
+      
+  invoice:
+    code: "INVOIC"
+    format: "UN/EDIFACT D.96A"
+    tax_handling:
+      - consumption_tax: "10%"
+      - reduced_rate: "8%"
+      - tax_exemption: "輸出取引"
+
+data_formats:
+  part_number:
+    format: "メーカーコード(4桁)-部品番号(10-20桁)"
+    example: "TOYT-1234567890"
+    validation: "regex: ^[A-Z]{4}-[A-Z0-9]{10,20}$"
+    
+  date_time:
+    format: "YYYYMMDDHHMMSS"
+    timezone: "JST (UTC+9)"
+    
+  quantity:
+    decimal_places: 3
+    unit_codes:
+      - EA: "個"
+      - SET: "セット"
+      - KG: "キログラム"
+      - M: "メートル"
+      
+  price:
+    currency: "JPY"
+    decimal_places: 0
+    tax_inclusive: false
+
+transaction_flow:
+  kanban_process:
+    steps:
+      1:
+        action: "内示データ受信"
+        frequency: "月1回"
+        lead_time: "3ヶ月前"
+        
+      2:
+        action: "確定注文受信"
+        frequency: "週1回"
+        lead_time: "2週間前"
+        
+      3:
+        action: "納入指示受信"
+        frequency: "日次"
+        lead_time: "3日前"
+        
+      4:
+        action: "出荷準備"
+        timing: "納入日前日"
+        
+      5:
+        action: "ASN送信"
+        timing: "出荷時"
+        
+      6:
+        action: "納品"
+        verification: "QRコード照合"
+        
+      7:
+        action: "検収データ受信"
+        timing: "納品後即時"
+        
+      8:
+        action: "請求データ送信"
+        timing: "月末締め"
+
+api_specifications:
+  rest_api:
+    base_url: "https://api.japia-edi.jp/v2"
+    
+    endpoints:
+      orders:
+        path: "/orders"
+        methods: ["GET", "POST"]
+        rate_limit: "100 requests/minute"
+        
+      inventory:
+        path: "/inventory"
+        methods: ["GET", "PUT"]
+        real_time: true
+        
+      shipments:
+        path: "/shipments"
+        methods: ["GET", "POST", "PUT"]
+        tracking: true
+        
+    authentication:
+      type: "OAuth 2.0"
+      token_endpoint: "/auth/token"
+      scopes:
+        - read:orders
+        - write:orders
+        - read:inventory
+        - write:shipments
+        
+  soap_api:
+    wsdl: "https://soap.japia-edi.jp/services?wsdl"
+    namespace: "http://www.japia.or.jp/edi/2025"
+    
+error_handling:
+  error_codes:
+    1001: "認証失敗"
+    1002: "権限不足"
+    2001: "データフォーマットエラー"
+    2002: "必須項目不足"
+    3001: "在庫不足"
+    3002: "納期調整不可"
+    4001: "システムエラー"
+    4002: "メンテナンス中"
+    
+  retry_policy:
+    max_attempts: 3
+    backoff_strategy: "exponential"
+    initial_delay: "1 second"
+    max_delay: "30 seconds"
+
+integration_patterns:
+  synchronous:
+    use_cases:
+      - inventory_check
+      - price_inquiry
+      - order_status
+    timeout: "30 seconds"
+    
+  asynchronous:
+    use_cases:
+      - bulk_orders
+      - forecast_updates
+      - settlement_processing
+    queue_system: "RabbitMQ"
+    
+  batch:
+    use_cases:
+      - daily_reconciliation
+      - monthly_invoicing
+      - annual_contracts
+    schedule: "cron format"
+
+compliance_requirements:
+  data_retention:
+    transaction_data: "7 years"
+    audit_logs: "3 years"
+    error_logs: "1 year"
+    
+  data_privacy:
+    personal_data: "masked"
+    encryption_at_rest: true
+    gdpr_compliance: "not applicable"
+    
+  audit_trail:
+    all_transactions: true
+    modification_tracking: true
+    user_identification: true
+
+performance_requirements:
+  response_time:
+    query: "< 1 second"
+    transaction: "< 3 seconds"
+    batch: "< 1 hour"
+    
+  throughput:
+    orders_per_second: 100
+    queries_per_second: 1000
+    
+  availability:
+    uptime_target: "99.5%"
+    maintenance_window: "Sunday 02:00-06:00 JST"
+
+testing_environment:
+  sandbox_url: "https://sandbox.japia-edi.jp"
+  test_credentials:
+    request_from: "JAPIA Support"
+    validity: "90 days"
+    
+  test_scenarios:
+    - order_placement
+    - inventory_update
+    - shipment_tracking
+    - error_handling
+    - performance_testing
+
+migration_support:
+  legacy_formats:
+    - fixed_length_text
+    - csv_files
+    - proprietary_formats
+    
+  conversion_tools:
+    provided_by: "JAPIA"
+    documentation: "available"
+    
+  parallel_run:
+    duration: "3 months recommended"
+    validation: "daily reconciliation"
+
+future_enhancements:
+  blockchain_integration:
+    status: "pilot phase"
+    use_case: "supply chain transparency"
+    
+  ai_demand_forecasting:
+    status: "development"
+    integration_point: "forecast API"
+    
+  iot_real_time_tracking:
+    status: "planning"
+    protocol: "MQTT"
+
+support_contacts:
+  technical_support:
+    email: "edi-support@japia.or.jp"
+    phone: "03-5405-6151"
+    hours: "09:00-17:00 JST weekdays"
+    
+  emergency_support:
+    hotline: "0120-XXX-XXX"
+    available: "24/7"
+
+---
+# This specification defines the integration requirements with JAPIA-EDI system
+# Used by parts-commerce sector agents for generating EDI integration specifications

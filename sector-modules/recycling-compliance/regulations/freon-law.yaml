@@ -1,0 +1,224 @@
+# フロン排出抑制法準拠要件定義
+# Fluorocarbons Emission Control Law Compliance Requirements
+# Version: v1.0.0
+# Last Updated: 2025-01-25
+
+law_information:
+  name_ja: "フロン類の使用の合理化及び管理の適正化に関する法律"
+  name_en: "Act on Rational Use and Proper Management of Fluorocarbons"
+  law_number: "平成13年法律第64号"
+  original_name: "フロン回収破壊法"
+  revised_name: "フロン排出抑制法"
+  revision_date: "2015-04-01"
+  latest_update: "2020-04-01"
+  regulatory_authority: "環境省・経済産業省"
+
+automotive_requirements:
+  vehicle_air_conditioning:
+    applicable_refrigerants:
+      - type: "HFC-134a"
+        gwp_value: 1430
+        phase_down_schedule: "2023年以降段階的削減"
+        
+      - type: "HFO-1234yf"
+        gwp_value: 4
+        status: "推奨代替冷媒"
+        
+      - type: "CO2 (R744)"
+        gwp_value: 1
+        status: "次世代冷媒"
+        
+  recovery_requirements:
+    recovery_rate_target:
+      2020: "50%以上"
+      2025: "70%以上"
+      2030: "75%以上"
+      
+    recovery_equipment:
+      certification: "JIS B 8629準拠"
+      calibration_frequency: "年1回"
+      recovery_capability: "30g/min以上"
+      
+business_operator_obligations:
+  registration:
+    type: "第一種フロン類充填回収業者"
+    authority: "都道府県知事"
+    validity: "5年"
+    renewal_notification: "期限3ヶ月前"
+    
+  equipment_requirements:
+    recovery_machines:
+      minimum_units: 1
+      backup_required: true
+      specifications:
+        - vacuum_capability: "5Pa以下"
+        - recovery_efficiency: "95%以上"
+        
+    storage_containers:
+      certification: "高圧ガス保安法準拠"
+      inspection_frequency: "6ヶ月"
+      capacity_planning: "月間処理量の1.5倍"
+      
+    measuring_equipment:
+      scale_accuracy: "±10g"
+      calibration: "年1回"
+      backup_scale: "required"
+
+operational_procedures:
+  recovery_process:
+    pre_inspection:
+      - refrigerant_type_identification
+      - system_pressure_check
+      - leak_detection
+      
+    recovery_steps:
+      1:
+        action: "システム接続"
+        verification: "接続部リークチェック"
+        
+      2:
+        action: "冷媒回収"
+        monitoring: "圧力・温度監視"
+        
+      3:
+        action: "真空引き"
+        target: "5Pa以下"
+        duration: "15分以上"
+        
+      4:
+        action: "回収量測定"
+        accuracy: "±10g"
+        
+    documentation:
+      recovery_certificate:
+        issuance: "即時発行"
+        retention: "3年間"
+        
+      recovery_record:
+        format: "指定様式"
+        submission: "四半期ごと"
+
+reporting_system:
+  regular_reporting:
+    frequency: "年度報告"
+    deadline: "翌年度5月31日"
+    submission_method: "電子申請システム"
+    
+  report_contents:
+    recovery_performance:
+      - total_vehicles_processed
+      - refrigerant_types_handled
+      - recovery_quantities
+      - recovery_rates
+      
+    facility_information:
+      - equipment_inventory
+      - maintenance_records
+      - staff_certifications
+      
+    incident_reporting:
+      - refrigerant_releases
+      - equipment_failures
+      - corrective_actions
+
+destruction_requirements:
+  approved_methods:
+    thermal_destruction:
+      temperature: "850℃以上"
+      retention_time: "2秒以上"
+      efficiency: "99.99%以上"
+      
+    plasma_destruction:
+      temperature: "10,000℃以上"
+      efficiency: "99.99%以上"
+      
+    catalyst_decomposition:
+      catalyst_type: "approved_list"
+      efficiency: "99.99%以上"
+      
+  destruction_facilities:
+    certification: "環境大臣認定"
+    audit_frequency: "年1回"
+    
+quality_control:
+  staff_training:
+    initial_training:
+      duration: "3日間"
+      certification_exam: true
+      passing_score: "80%以上"
+      
+    refresher_training:
+      frequency: "年1回"
+      duration: "1日"
+      topics:
+        - regulatory_updates
+        - best_practices
+        - safety_procedures
+        
+  equipment_maintenance:
+    daily_checks:
+      - pressure_gauge_verification
+      - connection_integrity
+      - safety_valve_function
+      
+    monthly_maintenance:
+      - filter_replacement
+      - oil_change
+      - leak_testing
+      
+    annual_overhaul:
+      - complete_inspection
+      - parts_replacement
+      - recertification
+
+penalties:
+  violations:
+    unlicensed_recovery:
+      penalty: "1年以下の懲役又は50万円以下の罰金"
+      
+    improper_release:
+      penalty: "1年以下の懲役又は50万円以下の罰金"
+      
+    false_reporting:
+      penalty: "30万円以下の罰金"
+      
+    record_keeping_failure:
+      penalty: "20万円以下の罰金"
+
+integration_requirements:
+  data_systems:
+    government_reporting:
+      api_endpoint: "https://www.env.go.jp/freon/api/"
+      data_format: "XML/JSON"
+      authentication: "digital_certificate"
+      
+    jarc_integration:
+      sync_frequency: "daily"
+      data_elements:
+        - vehicle_id
+        - recovery_date
+        - refrigerant_quantity
+        - processor_id
+
+future_considerations:
+  new_refrigerants:
+    natural_refrigerants:
+      co2_systems: "expanding_adoption"
+      hydrocarbon_systems: "safety_evaluation"
+      
+    synthetic_alternatives:
+      hfo_blends: "performance_testing"
+      low_gwp_options: "development_phase"
+      
+  regulatory_evolution:
+    gwp_limits:
+      2025: "GWP < 750"
+      2030: "GWP < 150"
+      
+    recovery_technology:
+      automated_systems: "pilot_testing"
+      iot_monitoring: "implementation_planning"
+
+---
+# This configuration defines compliance requirements for the Fluorocarbons Emission Control Law
+# Used by recycling-compliance sector agents for specification generation

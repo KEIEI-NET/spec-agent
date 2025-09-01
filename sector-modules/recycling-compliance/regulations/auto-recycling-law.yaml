@@ -1,0 +1,188 @@
+# 自動車リサイクル法準拠要件定義
+# Automobile Recycling Law Compliance Requirements
+# Version: v1.0.0
+# Last Updated: 2025-01-25
+
+law_information:
+  name_ja: "使用済自動車の再資源化等に関する法律"
+  name_en: "End-of-Life Vehicle Recycling Law"
+  law_number: "平成14年法律第87号"
+  enacted_date: "2002-07-12"
+  effective_date: "2005-01-01"
+  latest_revision: "2025-04-01"  # EV電池追加対応
+  regulatory_authority: "経済産業省・環境省"
+
+core_requirements:
+  three_materials:
+    freon:
+      description: "フロン類の適正回収・破壊"
+      mandatory_from: "2005-01-01"
+      certification_required: true
+      recovery_rate_target: "85%以上"
+      
+    airbags:
+      description: "エアバッグ類の適正処理"
+      mandatory_from: "2005-01-01"
+      deployment_required: true
+      recycling_rate_target: "85%以上"
+      
+    asr:
+      description: "シュレッダーダストの適正処理"
+      mandatory_from: "2005-01-01"
+      recycling_rate_target:
+        2015: "50%以上"
+        2025: "70%以上"
+
+business_licenses:
+  collection_business:
+    license_type: "引取業者登録"
+    authority: "都道府県知事・保健所設置市長"
+    validity_period: "5年"
+    renewal_required: true
+    
+  fluorocarbon_recovery:
+    license_type: "フロン類回収業者登録"
+    authority: "都道府県知事・保健所設置市長"
+    validity_period: "5年"
+    equipment_requirements:
+      - recovery_equipment
+      - storage_containers
+      - measuring_instruments
+      
+  dismantling_business:
+    license_type: "解体業許可"
+    authority: "都道府県知事・保健所設置市長"
+    validity_period: "5年"
+    facility_requirements:
+      - concrete_floor
+      - oil_water_separation
+      - fence_enclosure
+      - storage_capacity
+      
+  shredding_business:
+    license_type: "破砕業許可"
+    authority: "都道府県知事・保健所設置市長"
+    validity_period: "5年"
+    equipment_requirements:
+      - shredder_capacity
+      - dust_collection
+      - noise_control
+
+reporting_obligations:
+  jarc_reporting:
+    system: "自動車リサイクルシステム（JARC）"
+    timing:
+      vehicle_receipt: "引取後3日以内"
+      processing_complete: "処理完了後3日以内"
+    required_information:
+      - vehicle_identification
+      - processing_date
+      - processing_method
+      - destination_facility
+      
+  annual_reporting:
+    submission_deadline: "毎年6月30日"
+    report_contents:
+      - processing_volume
+      - recycling_rates
+      - facility_status
+      - violation_records
+
+ev_battery_requirements:
+  effective_date: "2025-04-01"
+  
+  handling_requirements:
+    safety_training:
+      mandatory: true
+      certification_body: "自動車整備振興会"
+      renewal_period: "3年"
+      
+    discharge_protocol:
+      voltage_threshold: "60V未満"
+      discharge_method: "専用放電装置使用"
+      verification_required: true
+      
+    storage_requirements:
+      container_type: "耐火性専用容器"
+      temperature_control: "25℃以下"
+      humidity_control: "65%以下"
+      segregation: "他の廃棄物と隔離"
+      
+  recycling_targets:
+    lithium_recovery: "95%以上"
+    cobalt_recovery: "95%以上"
+    nickel_recovery: "95%以上"
+    
+compliance_checklist:
+  documentation:
+    - item: "引取証明書の発行"
+      retention_period: "5年"
+      format: "JARC指定様式"
+      
+    - item: "処理完了報告書"
+      retention_period: "5年"
+      submission: "JARC電子報告"
+      
+    - item: "マニフェスト管理"
+      retention_period: "5年"
+      tracking_required: true
+      
+  facility_standards:
+    - item: "作業場床面のコンクリート化"
+      inspection_frequency: "年1回"
+      
+    - item: "油水分離装置の設置"
+      maintenance_frequency: "月1回"
+      
+    - item: "廃棄物保管場所の明示"
+      signage_required: true
+      
+penalties:
+  violations:
+    unlicensed_operation:
+      fine: "1年以下の懲役又は50万円以下の罰金"
+      
+    false_reporting:
+      fine: "30万円以下の罰金"
+      
+    improper_disposal:
+      fine: "5年以下の懲役又は1000万円以下の罰金"
+      
+data_integration:
+  jarc_api:
+    endpoint: "https://www.jars.gr.jp/api/v2/"
+    authentication: "certificate_based"
+    data_format: "JSON/XML"
+    
+  reporting_format:
+    vehicle_data:
+      required_fields:
+        - vin_number
+        - registration_number
+        - vehicle_type
+        - weight
+        - receipt_date
+        
+    processing_data:
+      required_fields:
+        - processing_type
+        - completion_date
+        - recovered_materials
+        - destination_facility
+
+future_extensions:
+  hydrogen_fuel_cells:
+    expected_regulation: "2026-04"
+    safety_requirements: "under_development"
+    
+  carbon_fiber_materials:
+    recycling_research: "ongoing"
+    target_implementation: "2027"
+    
+  autonomous_vehicle_components:
+    data_erasure_requirements: "drafting"
+    sensor_recycling: "research_phase"
+
+---
+# This configuration defines compliance requirements for the Japanese Automobile Recycling Law
+# Used by recycling-compliance sector agents for specification generation

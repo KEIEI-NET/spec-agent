@@ -1,62 +1,90 @@
-# Spec Agent System - 汎用仕様書作成エージェント群
+# Spec Agent After - 自動車アフターマーケット業界向け仕様書自動作成システム
 
-*バージョン: v2.0.0*
-*最終更新: 2025年01月25日 00:30 JST*
+*バージョン: v1.0.0*
+*最終更新: 2025年09月01日 16:30 JST*
 
-🚀 **ソフトウェア開発の仕様書作成を自動化・体系化するマルチエージェントシステム**
+🚗 **自動車アフターマーケット業界に特化した法規制準拠・業界標準対応の仕様書自動作成システム**
 
 ## 📌 概要
 
-Spec Agent System は、Claude Code CLI 上で動作する6つの専門AIエージェントが協調して、要求分析から実装仕様、品質レビューまでを一貫してサポートする革新的な仕様書作成システムです。
+Spec Agent After は、自動車アフターマーケット業界に特化した仕様書自動作成システムです。部品商社、ガラス専門店、リサイクル業界など、各セクターの固有要件と法規制に完全対応し、業界標準規格（JAPIA-EDI、ADAS、JARC等）と連携した高品質な仕様書を生成します。
+
+### 🚗 対象業界セクター
+
+| セクター | 主要機能 | 準拠法規・標準 |
+|---------|---------|--------------|
+| 🔧 **部品商社** | 部品カタログ管理、在庫予測、コンプライアンス検証 | PL法、IATF 16949、JAPIA-EDI |
+| 🪟 **ガラス専門** | ADAS校正、ガラス仕様管理、保険連携 | JIS R 3211/3212、ECE R43、ADAS規制 |
+| ♻️ **リサイクル** | 解体工程管理、循環経済支援、マニフェスト管理 | 自動車リサイクル法、フロン法、EV電池法 |
 
 ### ✨ 主な特徴
 
 | 特徴 | 説明 |
 |------|------|
-| 🤖 **専門性の高い分業体制** | 6つの専門エージェントが各フェーズを担当 |
-| 📝 **段階的詳細化** | 要求から実装まで段階的に仕様を詳細化 |
-| ✅ **品質保証の内蔵** | レビューエージェントによる自動品質チェック |
-| 🎯 **汎用性** | Web、モバイル、デスクトップ、組込みなど全分野対応 |
-| 🔄 **自動進捗管理** | progress.mdによるリアルタイム進捗追跡 |
-| 📚 **豊富なテンプレート** | 実践的なテンプレートを多数内蔵 |
+| 🎯 **業界特化型** | 自動車アフターマーケットの固有要件に完全対応 |
+| 📋 **法規制準拠** | 各セクターの法令・業界標準を完全網羅 |
+| 🔗 **システム連携** | JAPIA-EDI、JARC-API、保険会社API等との連携仕様 |
+| 🌐 **循環経済対応** | カーボンフットプリント追跡、サーキュラーエコノミー支援 |
+| 🚀 **将来技術対応** | EV/FCV、ADAS/自動運転、新素材への拡張性確保 |
+| 📚 **豊富なテンプレート** | 業界標準に準拠した仕様書テンプレート内蔵 |
 
 ## 🏗️ システム構成
 
-### エージェント構成図
+### モジュラーアーキテクチャ
 
 ```mermaid
 graph TB
-    Master[spec-master-agent<br/>統括管理]
-    Req[requirement-analyst-agent<br/>要求分析]
-    Arch[system-architect-agent<br/>システム設計]
-    Impl[implementation-spec-agent<br/>実装仕様]
-    Tech[technical-writer-agent<br/>文書整形]
-    QA[qa-reviewer-agent<br/>品質保証]
+    subgraph "Core System"
+        Master[spec-master-agent<br/>統括管理]
+        Coord[sector-coordinator<br/>セクター調整]
+    end
     
-    Master --> Req
-    Master --> Arch
-    Master --> Impl
-    Master --> Tech
-    Master --> QA
+    subgraph "Parts Commerce Sector"
+        PC1[parts-catalog-agent<br/>部品カタログ]
+        PC2[inventory-forecast-agent<br/>在庫予測]
+        PC3[compliance-verification-agent<br/>コンプライアンス]
+    end
     
-    Req -.-> Arch
-    Arch -.-> Impl
-    Tech -.-> Req
-    Tech -.-> Arch
-    Tech -.-> Impl
-    QA -.-> All[全Agent]
+    subgraph "Glass Specialty Sector"
+        GS1[adas-calibration-agent<br/>ADAS校正]
+        GS2[glass-specification-agent<br/>ガラス仕様]
+        GS3[insurance-integration-agent<br/>保険連携]
+    end
+    
+    subgraph "Recycling Compliance Sector"
+        RC1[dismantling-process-agent<br/>解体工程]
+        RC2[circular-economy-agent<br/>循環経済]
+        RC3[manifest-management-agent<br/>マニフェスト]
+    end
+    
+    Master --> Coord
+    Coord --> PC1 & PC2 & PC3
+    Coord --> GS1 & GS2 & GS3
+    Coord --> RC1 & RC2 & RC3
 ```
 
-### 各エージェントの役割
+### セクター別エージェント一覧
 
-| エージェント | 主要責務 | 成果物 |
-|-------------|---------|--------|
-| **spec-master-agent** | プロセス全体の統括・進捗管理 | progress.md, todo.md |
-| **requirement-analyst-agent** | 要求の収集・分析・整理 | requirement_spec.md |
-| **system-architect-agent** | アーキテクチャ・データモデル設計 | architecture_design.md, data_model.md |
-| **implementation-spec-agent** | API・実装詳細仕様定義 | implementation_spec.md, api_spec.md |
-| **technical-writer-agent** | ドキュメント整形・統一 | 全仕様書の整形版 |
-| **qa-reviewer-agent** | 品質レビュー・検証 | review_report.md |
+#### 🔧 部品商社セクター
+| エージェント | 主要機能 | 生成仕様書 |
+|-------------|---------|-----------|
+| **parts-catalog-agent** | 部品マスター管理、互換性DB、価格設定 | 部品カタログシステム仕様書 |
+| **inventory-forecast-agent** | AI需要予測、在庫最適化、補充計画 | 在庫予測システム仕様書 |
+| **compliance-verification-agent** | PL法準拠、IATF認証、品質保証 | コンプライアンス管理仕様書 |
+
+#### 🪟 ガラス専門セクター
+| エージェント | 主要機能 | 生成仕様書 |
+|-------------|---------|-----------|
+| **adas-calibration-agent** | ADAS校正手順、機器管理、認証記録 | ADAS校正システム仕様書 |
+| **glass-specification-agent** | ガラス種別管理、JIS/ECE準拠、品質管理 | ガラス仕様管理システム仕様書 |
+| **insurance-integration-agent** | 直接請求、査定支援、不正防止 | 保険連携システム仕様書 |
+
+#### ♻️ リサイクルセクター
+| エージェント | 主要機能 | 生成仕様書 |
+|-------------|---------|-----------|
+| **dismantling-process-agent** | 解体工程管理、有害物質処理、EV電池対応 | 解体工程管理システム仕様書 |
+| **circular-economy-agent** | 資源循環最適化、カーボン管理、持続可能性評価 | 循環経済支援システム仕様書 |
+| **manifest-management-agent** | 電子マニフェスト、JWNET連携、追跡管理 | マニフェスト管理システム仕様書 |
 
 ## 🚀 クイックスタート
 
@@ -110,47 +138,75 @@ claude
 ## 📁 プロジェクト構造
 
 ```
-spec-agent/
-├── 📄 Agent定義ファイル
+spec-agent-after/
+├── 📄 Core Agents（基本エージェント）
 │   ├── spec-master-agent.md
 │   ├── requirement-analyst-agent.md
 │   ├── system-architect-agent.md
 │   ├── implementation-spec-agent.md
 │   ├── technical-writer-agent.md
 │   └── qa-reviewer-agent.md
+├── 🏭 Sector Modules（業界別モジュール）
+│   ├── sector-coordinator.yaml      # セクター間調整設定
+│   ├── parts-commerce/              # 部品商社セクター
+│   │   ├── agents/
+│   │   │   ├── parts-catalog-agent.md
+│   │   │   ├── inventory-forecast-agent.md
+│   │   │   └── compliance-verification-agent.md
+│   │   └── regulations/
+│   │       ├── pl-law.yaml
+│   │       └── iatf16949.yaml
+│   ├── glass-specialty/             # ガラス専門セクター
+│   │   ├── agents/
+│   │   │   ├── adas-calibration-agent.md
+│   │   │   ├── glass-specification-agent.md
+│   │   │   └── insurance-integration-agent.md
+│   │   └── regulations/
+│   │       ├── adas-regulation.yaml
+│   │       └── ece-r43.yaml
+│   └── recycling-compliance/        # リサイクルセクター
+│       ├── agents/
+│       │   ├── dismantling-process-agent.md
+│       │   ├── circular-economy-agent.md
+│       │   └── manifest-management-agent.md
+│       └── regulations/
+│           ├── auto-recycling-law.yaml
+│           ├── freon-law.yaml
+│           └── ev-battery-law.yaml
+├── 🔗 Cross-Sector Functions（横断機能）
+│   ├── supply-chain-integration.yaml
+│   ├── carbon-footprint-tracker.yaml
+│   └── circular-economy-metrics.yaml
 ├── ⚙️ 設定・ルール
 │   └── coordination_rules.yaml
-├── 🔧 インストーラー
-│   ├── install.py           # セキュリティ強化版インストーラー
-│   ├── install.py           # 標準インストーラー
-│   ├── install.sh           # Unix系用
-│   ├── install.bat          # Windows用
-│   └── uninstall.py         # アンインストーラー
 ├── 📋 プロジェクト管理
-│   ├── progress.md          # 進捗管理
-│   └── todo.md             # タスク管理
+│   ├── progress.md
+│   └── todo.md
 ├── 📚 ドキュメント
 │   ├── README.md           # このファイル
-│   ├── INSTALLATION.md     # インストールガイド
-│   ├── USAGE.md           # 使用ガイド
-│   ├── API_REFERENCE.md   # API仕様
-│   ├── CONTRIBUTING.md    # 貢献ガイド
-│   ├── CHANGELOG.md       # 変更履歴
-│   ├── manual.md          # 詳細マニュアル
-│   └── CLAUDE.md          # Claude統合ガイド
+│   ├── INSTALLATION.md
+│   ├── USAGE.md
+│   └── CLAUDE.md
 └── 📂 生成物（実行時作成）
     └── specifications/     # 生成される仕様書
 ```
 
-## 🎯 対応プロジェクトタイプ
+## 🎯 生成可能な仕様書タイプ
 
-- **Webアプリケーション**: SPA、MPA、JAMstack
-- **モバイルアプリ**: iOS、Android、クロスプラットフォーム
-- **デスクトップアプリ**: Windows、macOS、Linux
-- **API/バックエンド**: REST、GraphQL、gRPC
-- **組込みシステム**: IoT、ファームウェア
-- **AI/ML**: モデル開発、データパイプライン
-- **ブロックチェーン**: DApps、スマートコントラクト
+### 部品商社向け仕様書
+- **部品カタログ管理システム仕様書**: マスターデータ管理、互換性DB、価格設定
+- **在庫予測システム仕様書**: AI需要予測、発注最適化、リードタイム管理
+- **コンプライアンス管理仕様書**: PL法対応、品質保証体制、認証管理
+
+### ガラス専門店向け仕様書
+- **ADAS校正システム仕様書**: 校正手順管理、機器認証、作業記録
+- **ガラス仕様管理システム仕様書**: 型式DB、品質基準、在庫管理
+- **保険連携システム仕様書**: 直接請求、査定支援、不正防止
+
+### リサイクル業界向け仕様書
+- **解体工程管理システム仕様書**: 工程最適化、有害物質処理、EV対応
+- **循環経済支援システム仕様書**: 資源フロー、カーボン管理、KPI測定
+- **電子マニフェストシステム仕様書**: JWNET連携、追跡管理、法令遵守
 
 ## 🛠️ カスタマイズ
 
@@ -195,8 +251,8 @@ MIT License - 詳細は [LICENSE](LICENSE) ファイルを参照
 
 ---
 
-*最終更新: 2025年01月25日 00:30 JST*
-*バージョン: v2.0.0*
+*最終更新: 2025年01月25日 17:00 JST*
+*バージョン: v1.0.0*
 
 **更新履歴:**
-- v2.0.0 (2025年01月25日): ドキュメント全面改訂、視覚的要素の追加、構造の最適化
+- v1.0.0 (2025年01月25日): 自動車アフターマーケット業界特化版として新規リリース
