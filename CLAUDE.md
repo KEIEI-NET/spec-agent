@@ -1,166 +1,115 @@
-# CLAUDE.md - Claude Code Integration Guide
+# CLAUDE.md
 
-*Version: v2.0.0*
-*Last Updated: 2025-01-25 00:30 JST*
+このファイルは、このリポジトリでClaude Code (claude.ai/code)が作業する際のガイダンスを提供します。
 
-This file provides comprehensive guidance to Claude Code (claude.ai/code) when working with the Spec Agent System repository.
+## プロジェクト概要
 
-## 📌 Project Overview
+Spec Agent Systemは、複数の専門AIエージェントを使用した日本語仕様書生成フレームワークです。6つの専門エージェントが協調して、構造化されたワークフローで包括的なソフトウェア仕様書を作成します。
 
-Spec Agent System is a sophisticated Japanese-language specification document generation framework utilizing multiple specialized AI agents. The system orchestrates 6 expert agents to create comprehensive, production-ready software specifications through a structured workflow from initial requirements to detailed implementation specifications.
+## コマンド
 
-### Key Characteristics
-- **Language**: Primary documentation in Japanese, code comments in English
-- **Architecture**: Multi-agent collaborative system
-- **Integration**: Native Claude Code CLI sub-agent system
-- **Methodology**: Supports waterfall, agile, and hybrid approaches
+### インストールとセットアップ
+```bash
+# エージェントシステムのインストール (Python 3.x必須)
+python install.py
 
-## 🏗️ Agent System Architecture
+# 代替インストール方法
+./install.sh   # Linux/macOS
+install.bat    # Windows
 
-The system consists of 6 specialized agents coordinated through YAML rules:
+# アンインストール
+python uninstall.py
+```
 
-1. **spec-master-agent.md** - Master coordinator managing the entire specification process
-2. **requirement-analyst-agent.md** - Requirements analysis and validation
-3. **system-architect-agent.md** - System architecture and data model design
-4. **implementation-spec-agent.md** - Implementation details, API specs, and test specifications
-5. **technical-writer-agent.md** - Document formatting and consistency
-6. **qa-reviewer-agent.md** - Quality review and validation
+### エージェントの呼び出し
+```bash
+# 新しいプロジェクトを開始
+@spec-master-agent プロジェクトを初期化してください
 
-## 📁 Key Files and Their Purpose
+# 要求分析
+@requirement-analyst-agent 要求を分析してください
 
-- `coordination_rules.yaml` - Defines workflow and communication rules between agents
-- `progress.md` - Tracks overall project progress through phases
-- `todo.md` - Task management with priority levels
-- `manual.md` - Comprehensive user manual for the agent system
-- `specifications/` - Directory for generated specification documents (to be created)
+# システムアーキテクチャ設計
+@system-architect-agent アーキテクチャを設計してください
 
-## 🔄 Workflow Phases
+# 実装仕様
+@implementation-spec-agent 実装仕様を作成してください
 
-1. **要求分析 (Requirements Analysis)** - Gather and document functional/non-functional requirements
-2. **システム設計 (System Design)** - Create architecture and data models
-3. **実装仕様 (Implementation Specs)** - Define APIs, modules, and coding standards
-4. **ドキュメント整形 (Documentation)** - Format and ensure consistency
-5. **品質レビュー (Quality Review)** - Validate completeness and correctness
+# ドキュメント整形
+@technical-writer-agent ドキュメントを整形してください
 
-## 📂 Expected Output Structure
+# 品質レビュー
+@qa-reviewer-agent 仕様書をレビューしてください
+```
 
+## アーキテクチャ
+
+### エージェントシステム
+- **6つの専門エージェント**: 各エージェントが仕様作成の特定フェーズを担当
+- **連携ルール**: `coordination_rules.yaml`でワークフロー管理を定義
+- **進捗追跡**: `progress.md`と`todo.md`で管理
+
+### ワークフローフェーズ
+1. **要求分析** - 機能要求・非機能要求の収集
+2. **システム設計** - アーキテクチャとデータモデルの作成
+3. **実装仕様** - API、モジュール、標準の定義
+4. **ドキュメント整形** - フォーマットと一貫性の確保
+5. **品質レビュー** - 完全性と正確性の検証
+
+### 出力構造
 ```
 specifications/
-├── requirement_spec.md     # Requirements specification
-├── architecture_design.md  # System architecture
-├── data_model.md           # Database design
-├── implementation_spec.md  # Implementation details
-├── api_spec.md            # API specifications
-├── test_spec.md           # Test specifications
-├── coding_standards.md    # Coding conventions
-└── review_report.md       # Quality review results
+├── requirement_spec.md     # 要求仕様書
+├── architecture_design.md  # システムアーキテクチャ
+├── data_model.md          # データベース設計
+├── implementation_spec.md  # 実装詳細
+├── api_spec.md            # API仕様
+├── test_spec.md           # テスト仕様
+├── coding_standards.md    # コーディング規約
+└── review_report.md       # 品質レビュー結果
 ```
 
-## ⚠️ Important Notes for Claude Code
+## 主要ガイドライン
 
-### Language Guidelines
-- **Documentation**: Japanese (with English headers for navigation)
-- **Code Comments**: English for international compatibility
-- **User Interaction**: Japanese preferred, English supported
-- **Error Messages**: Bilingual (Japanese primary, English secondary)
+### 言語規約
+- **ドキュメント**: 全仕様書は日本語
+- **コードコメント**: 国際互換性のため英語
+- **ユーザー対話**: 日本語優先、英語サポート
+- **エラーメッセージ**: バイリンガル（日本語主、英語副）
 
-### Technical Constraints
-- **File Encoding**: UTF-8 mandatory
-- **Line Endings**: LF (Unix-style) preferred
-- **Path Separators**: Use forward slashes even on Windows
-- **Max File Size**: Keep individual specs under 100KB
+### エージェント通信プロトコル
+- エージェントは構造化されたマークダウンファイルで通信
+- 各エージェントは処理前に入力を検証
+- 出力はエージェント定義ファイルの事前定義スキーマに準拠
+- 追跡には`progress.md`、タスク管理には`todo.md`を使用
 
-### Agent Communication Protocol
-- Agents communicate via structured markdown files
-- Each agent must validate input before processing
-- Output must conform to predefined schemas
-- Error handling must be graceful with fallbacks
+### 開発プラクティス
+- **アトミック操作**: 各エージェントアクションは自己完結的
+- **検証**: 入出力を常に検証
+- **進捗追跡**: progress.mdとtodo.mdを継続的に更新
+- **エラー回復**: エラーをprogress.mdに記録し、グレースフルリカバリを試行
 
-### Development Best Practices
-1. **Atomic Operations**: Each agent action should be atomic
-2. **Idempotency**: Repeated operations should produce same result
-3. **Validation**: Always validate inputs and outputs
-4. **Logging**: Maintain detailed logs in progress.md
-5. **Version Control**: Track all specification versions
+## クイックリファレンス
 
-## 🔧 Claude Code Specific Instructions
+### 新規プロジェクトの開始
+1. `@spec-master-agent`で初期化
+2. プロジェクト概要と制約を提供
+3. エージェントのプロンプトに従って要求を入力
+4. `specifications/`ディレクトリで生成された仕様書を確認
 
-### When Creating Specifications
-1. Always start with `@spec-master-agent` for coordination
-2. Maintain progress.md and todo.md continuously
-3. Create specifications/ directory if not exists
-4. Use relative paths within project directory
-5. Preserve existing files unless explicitly updating
-
-### Error Recovery
-```javascript
-try {
-  // Agent operation
-} catch (error) {
-  // Log to progress.md
-  // Attempt graceful recovery
-  // Notify user with actionable message
-}
-```
-
-### Performance Optimization
-- Cache frequently accessed specifications
-- Batch similar operations
-- Minimize file I/O operations
-- Use streaming for large documents
-
-## 🚀 Quick Start Commands
-
+### よく使うタスク
 ```bash
-# Initialize new project
-@spec-master-agent initialize project "Project Name"
+# 完全な仕様書生成
+@spec-master-agent ECサイトの仕様書を作成
 
-# Start requirement analysis
-@requirement-analyst-agent analyze requirements
+# 部分的な更新
+@requirement-analyst-agent 新機能の要求を追加
 
-# Generate architecture
-@system-architect-agent design architecture
-
-# Create implementation specs
-@implementation-spec-agent define implementation
-
-# Format all documents
-@technical-writer-agent format all
-
-# Run quality review
-@qa-reviewer-agent review specifications
+# 品質チェック
+@qa-reviewer-agent 全仕様書の整合性をチェック
 ```
 
-## 📊 Metrics and Monitoring
-
-Track these metrics in progress.md:
-- Phase completion percentage
-- Document word count
-- Review issues found/resolved
-- Time spent per phase
-- Agent utilization rate
-
-## 🔗 Integration Points
-
-### With Version Control
-- Auto-commit after each phase completion
-- Tag releases with version numbers
-- Branch for experimental specifications
-
-### With CI/CD
-- Trigger reviews on specification updates
-- Generate PDF/HTML from markdown
-- Deploy documentation to wiki/portal
-
-### With Project Management
-- Sync todo.md with issue trackers
-- Update progress in PM tools
-- Send notifications on milestones
-
----
-
-*Last Updated: 2025-01-25 00:30 JST*
-*Version: v2.0.0*
-
-**Update History:**
-- v2.0.0 (2025-01-25): Complete overhaul with Claude Code specific instructions, added integration guidelines
+### 統合ポイント
+- **バージョン管理**: フェーズ完了後に自動コミット
+- **CI/CD**: 仕様更新時にレビューをトリガー
+- **プロジェクト管理**: todo.mdを課題トラッカーと同期
